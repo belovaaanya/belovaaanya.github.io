@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "Intel One Mono";
+  src: url("../fonts/IntelOneMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Intel One Mono";
+  src: url("../fonts/IntelOneMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0d0d0d;          /* refined in Task 2 from Figma */
+  --fg: #ffffff;
+  --muted: #7a7a7a;
+  --tag-bg: rgba(255, 255, 255, 0.1);
+  --radius: 8px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Intel One Mono", ui-monospace, monospace;
+  overflow: hidden;            /* desktop paging owns scroll; overridden on mobile in Task 8 */
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
