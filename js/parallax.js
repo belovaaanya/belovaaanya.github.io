@@ -1,73 +1,67 @@
-// Layered-depth parallax played on each slide transition.
-// NOTE: never animate `.showcase` transform — it holds the fit-scale.
-// We move `.showcase-wrap` (scene) and each `.layer` (depth) instead.
+// Scroll-position-driven parallax.
+// Every element's vertical offset is a continuous function of the current
+// scroll position, so images and text slide at DIFFERENT speeds throughout the
+// whole scroll / slide transition (not a canned animation that settles early).
+//
+// For a slide k, `off = k*vh - scrollY` is 0 when that slide is centered.
+// An element with speed factor `f` is translated by `off * (f - 1)`, so its
+// on-screen travel is `f×` the scroll:
+//   f < 1  → moves slower than the page (background, lags behind)
+//   f = 1  → moves with the page
+//   f > 1  → moves faster than the page (foreground, e.g. the text panel)
+//
+// NOTE: never touch `.showcase` transform — it holds the fit-scale. We move
+// `.showcase-wrap` (scene) and each `.layer` (depth) instead.
 
 const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-const IN = 190; // entrance offset (px) — larger = more pronounced parallax
-const OUT = 120; // exit drift (px) for the leaving slide
-
 export function initParallax(slides) {
-  const parts = slides.map((s) => ({
-    wrap: s.querySelector(".showcase-wrap"),
-    layers: [...s.querySelectorAll(".layer")],
-    panel: s.querySelector(".panel"),
-    bio: s.querySelector(".bio"),
-  }));
-
-  // The leaving slide's elements drift further in the travel direction and fade,
-  // so the whole scene comes apart with depth as it exits.
-  function leave(p, s) {
-    if (!p) return;
-    const y = -s * OUT;
-    if (p.wrap) gsap.to(p.wrap, { y: y * 0.5, opacity: 0.3, duration: 0.5, ease: "power2.in", overwrite: true });
-    if (p.panel) gsap.to(p.panel, { y: y * 1.0, opacity: 0, duration: 0.45, ease: "power2.in", overwrite: true });
-    if (p.bio) gsap.to(p.bio, { y: y * 0.6, opacity: 0.2, duration: 0.5, ease: "power2.in", overwrite: true });
-    p.layers.forEach((el) => {
+  const items = slides.map((s, k) => {
+    const els = [];
+    const wrap = s.querySelector(".showcase-wrap");
+    if (wrap) els.push({ el: wrap, f: 0.86, fade: false, layer: false, d: 0.5 });
+    s.querySelectorAll(".layer").forEach((el) => {
       const d = parseFloat(el.dataset.depth) || 0.5;
-      gsap.to(el, { y: y * (0.5 + d), duration: 0.5, ease: "power2.in", overwrite: "auto" });
+      els.push({ el, f: 0.7 + d * 0.7, fade: false, layer: true, d }); // 0.7‥1.4
     });
-  }
+    const panel = s.querySelector(".panel");
+    if (panel) els.push({ el: panel, f: 1.28, fade: true, layer: false, d: 0.5 });
+    const bio = s.querySelector(".bio");
+    if (bio) els.push({ el: bio, f: 1.14, fade: true, layer: false, d: 0.5 });
+    return { slide: s, els };
+  });
 
-  // The entering slide assembles from an offset, each element at its own rate.
-  function enter(p, s) {
-    if (!p) return;
-    const tl = gsap.timeline();
-    if (p.wrap) {
-      tl.fromTo(p.wrap, { y: s * IN * 0.35, opacity: 0.35 }, { y: 0, opacity: 1, duration: 0.95, ease: "power3.out" }, 0);
-    }
-    p.layers.forEach((el, i) => {
-      const d = parseFloat(el.dataset.depth) || 0.5;
-      tl.fromTo(el, { y: s * IN * (0.5 + d * 1.15) }, { y: 0, duration: 1.0, ease: "power3.out" }, 0.03 * i);
-    });
-    if (p.panel) {
-      tl.fromTo(p.panel, { y: s * IN * 1.25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.85, ease: "power3.out" }, 0.12);
-    }
-    if (p.bio) {
-      tl.fromTo(p.bio, { y: s * IN * 0.55, opacity: 0.3 }, { y: 0, opacity: 1, duration: 0.85, ease: "power3.out" }, 0);
-    }
-  }
-
-  function play(from, to, dir) {
+  // Desktop: full translate (+ gentle fade) parallax vs. scroll position.
+  // `off` = slide's real layout top − scroll position (0 when centered).
+  function update(scrollY) {
     if (reduce) return;
-    const s = dir >= 0 ? 1 : -1;
-    leave(parts[from], s);
-    enter(parts[to], s);
+    for (const { slide, els } of items) {
+      const off = slide.offsetTop - scrollY;
+      const h = slide.offsetHeight || window.innerHeight;
+      for (const it of els) {
+        const y = off * (it.f - 1);
+        if (it.fade) {
+          const o = Math.max(0.12, 1 - Math.min(1, Math.abs(off) / h) * 0.9);
+          gsap.set(it.el, { y, opacity: o });
+        } else {
+          gsap.set(it.el, { y });
+        }
+      }
+    }
   }
 
-  // subtle pointer-driven drift on the active slide's layers (depth = amount)
-  if (!reduce) {
-    window.addEventListener("pointermove", (e) => {
-      const idx = window.__nav ? window.__nav.current() : 0;
-      const p = parts[idx];
-      if (!p || !p.layers.length) return;
-      const cx = (e.clientX / window.innerWidth - 0.5) * 2; // -1..1
-      p.layers.forEach((el) => {
-        const depth = parseFloat(el.dataset.depth) || 0.5;
-        gsap.to(el, { x: cx * depth * 12, duration: 0.7, ease: "power2.out", overwrite: "auto" });
-      });
-    });
+  // Mobile: subtle layer-only drift, kept small so clipped layers never
+  // reveal their edges, and text/layout is left untouched (no reflow).
+  function updateMobile(scrollY) {
+    if (reduce) return;
+    for (const { slide, els } of items) {
+      const h = slide.offsetHeight || window.innerHeight;
+      const t = Math.max(-1, Math.min(1, (slide.offsetTop - scrollY) / h)); // -1‥1
+      for (const it of els) {
+        if (it.layer) gsap.set(it.el, { y: t * (8 + it.d * 26) });
+      }
+    }
   }
 
-  return { play };
+  return { update, updateMobile };
 }

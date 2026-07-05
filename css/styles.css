@@ -19,7 +19,7 @@
   --muted: #7a7a7a;
   --tag-bg: rgba(255, 255, 255, 0.1);
   --radius: 8px;
-  --dots-gutter: 104px;   /* right space reserved for the dot rail */
+  --dots-gutter: 80px;   /* right space reserved for the dot rail */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -70,19 +70,22 @@ a { color: inherit; }
 
 /* ── case slide ──────────────────────────────────────────────────────── */
 .case {
-  width: min(1350px, 92vw); margin: 0 auto;
-  display: grid; grid-template-columns: 832fr 492fr; gap: 24px;
-  align-items: end;
+  width: 100%; margin: 0;
+  display: flex; flex-direction: column; gap: 20px;
 }
 
-/* Desktop: showcase visuals sit flush to the left edge of the page. */
+/* Desktop: showcase visuals sit flush to the left edge, content fills the slide. */
 @media (min-width: 901px) {
+  /* Pin the slide wrapper to the viewport so document scroll (or a stale
+     scroll position from mobile) can never offset the transform paging. */
+  #app { position: fixed; top: 0; left: 0; width: 100%; }
   .slide--case { justify-content: flex-start; padding-left: 0; }
   .case {
-    width: 100%; margin: 0;
-    grid-template-columns: minmax(0, 62%) minmax(0, 38%);
-    gap: clamp(28px, 3.5vw, 64px);
+    flex-direction: row; align-items: center; height: 100%;
+    gap: clamp(24px, 2.5vw, 44px);
   }
+  .showcase-wrap { flex: none; }      /* width sized by JS to fill height */
+  .panel { flex: 1 1 0; min-width: 0; }
 }
 .showcase-wrap { position: relative; width: 100%; }
 .showcase {
@@ -92,14 +95,14 @@ a { color: inherit; }
 .layer { position: absolute; overflow: hidden; will-change: transform; }
 .layer__img { position: absolute; display: block; max-width: none; }
 
-.panel { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.panel { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .panel__tags { display: flex; gap: 4px; }
 .panel__title {
-  margin: 0; font-weight: 500; font-size: clamp(26px, 2.9vw, 40px);
-  line-height: 1.1; letter-spacing: -0.02em; max-width: 332px;
+  margin: 0; font-weight: 500; font-size: clamp(28px, 3vw, 48px);
+  line-height: 1.1; letter-spacing: -0.02em; max-width: 100%;
 }
-.panel__desc { display: flex; flex-direction: column; gap: 1.4em; max-width: 352px; }
-.panel__desc p { margin: 0; font-size: 12px; line-height: 1.4; }
+.panel__desc { display: flex; flex-direction: column; gap: 1.4em; max-width: 46ch; }
+.panel__desc p { margin: 0; font-size: 13px; line-height: 1.45; }
 .panel__btn {
   width: 53px; height: 56px; border-radius: var(--radius);
   background: var(--tag-bg); transition: background .2s;
@@ -154,10 +157,7 @@ body[data-cue="off"] #scroll-cue { opacity: 0; pointer-events: none; animation: 
     scroll-snap-align: start; padding: 8vh 6vw;
     height: auto; min-height: 100dvh; overflow: visible;
   }
-  .case {
-    grid-template-columns: 1fr; gap: 22px; align-items: start;
-    width: 100%;
-  }
+  .case { gap: 18px; width: 100%; }
   .bio__headline { flex-wrap: wrap; }
   .bio__meta { margin-left: 0; width: 100%; }
   #dots { right: 14px; gap: 10px; }

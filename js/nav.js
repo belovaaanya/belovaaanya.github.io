@@ -24,29 +24,39 @@ function buildDots(labels, onClick) {
   return [...dots.children];
 }
 
-export function initNav({ slides, labels, onChange = () => {} }) {
+export function initNav({ slides, labels, onScroll = () => {} }) {
   const wrap = slides[0].parentElement; // #app
   let index = 0;
   let animating = false;
+  const state = { s: 0 }; // current scroll position in px (0 = first slide)
+
+  // Real layout position of each slide — robust to vh/dvh differences and
+  // viewport-height timing, unlike `index * innerHeight`.
+  const posOf = (i) => slides[i].offsetTop;
 
   const dotEls = buildDots(labels, (i) => goTo(i));
   const setDots = () =>
     dotEls.forEach((d, i) => d.setAttribute("aria-current", i === index ? "true" : "false"));
 
+  // Every frame: move the wrapper AND feed the scroll position to parallax,
+  // so images/text slide continuously (not a canned settle).
+  function render() {
+    gsap.set(wrap, { y: -state.s });
+    onScroll(state.s);
+  }
+
   function goTo(i) {
     i = Math.max(0, Math.min(slides.length - 1, i));
     if (i === index || animating) return;
-    const from = index;
-    const dir = i > index ? 1 : -1;
     animating = true;
     index = i;
     setDots();
     document.body.dataset.cue = "off";
-    onChange(from, i, dir);
-    gsap.to(wrap, {
-      y: -i * window.innerHeight,
+    gsap.to(state, {
+      s: posOf(i),
       duration: DURATION,
       ease: "power3.inOut",
+      onUpdate: render,
       onComplete: () => {
         animating = false;
       },
@@ -85,10 +95,14 @@ export function initNav({ slides, labels, onChange = () => {} }) {
     }
   });
 
-  // keep alignment on resize
-  window.addEventListener("resize", () => gsap.set(wrap, { y: -index * window.innerHeight }));
+  // keep alignment + parallax correct on resize
+  window.addEventListener("resize", () => {
+    state.s = posOf(index);
+    render();
+  });
 
   setDots();
+  render(); // initial position + parallax
   const api = { goTo, current: () => index };
   window.__nav = api;
   return api;

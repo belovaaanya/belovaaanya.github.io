@@ -66,7 +66,7 @@ function renderCase(c) {
   s.innerHTML = `
     <div class="case">
       <div class="showcase-wrap" style="aspect-ratio:${c.dw}/${c.dh}">
-        <div class="showcase" data-dw="${c.dw}"
+        <div class="showcase" data-dw="${c.dw}" data-dh="${c.dh}"
              style="width:${c.dw}px; height:${c.dh}px; border-radius:${c.radius}px;${c.bg ? `background:${c.bg};` : ""}"></div>
       </div>
       <div class="panel">
@@ -83,14 +83,30 @@ function renderCase(c) {
   return s;
 }
 
-/* ── scale each showcase from design px to its column width ──────────── */
+/* ── size + scale each showcase to fill its slide ───────────────────── */
 
-function scaleShowcases() {
+const PANEL_MIN = 300; // px reserved for the text panel (desktop)
+
+function sizeShowcases() {
+  const isDesktop = window.matchMedia("(min-width: 901px)").matches;
   document.querySelectorAll(".showcase").forEach((sc) => {
     const wrap = sc.parentElement;
     const dw = parseFloat(sc.dataset.dw);
-    const s = wrap.clientWidth / dw;
-    sc.style.transform = `scale(${s})`;
+    const dh = parseFloat(sc.dataset.dh);
+    const aspect = dw / dh;
+
+    if (isDesktop) {
+      const caseEl = wrap.closest(".case");
+      const gap = parseFloat(getComputedStyle(caseEl).columnGap) || 40;
+      const availH = window.innerHeight * 0.92;                 // near-full height
+      const maxW = Math.max(260, caseEl.clientWidth - PANEL_MIN - gap);
+      const w = Math.min(maxW, availH * aspect);                // fill height, cap by panel room
+      wrap.style.width = `${w}px`;
+      sc.style.transform = `scale(${w / dw})`;
+    } else {
+      wrap.style.width = ""; // full column; CSS controls
+      sc.style.transform = `scale(${wrap.clientWidth / dw})`;
+    }
   });
 }
 
@@ -100,20 +116,28 @@ app.innerHTML = "";
 app.appendChild(renderBio(bio));
 cases.forEach((c) => app.appendChild(renderCase(c)));
 
-scaleShowcases();
-window.addEventListener("resize", scaleShowcases);
-window.addEventListener("load", scaleShowcases);
+sizeShowcases();
+window.addEventListener("resize", sizeShowcases);
+window.addEventListener("load", sizeShowcases);
 
 const slides = [...app.querySelectorAll(".slide")];
 const labels = [bio.navLabel, ...cases.map((c) => c.navLabel)];
+const parallax = initParallax(slides);
 const desktop = window.matchMedia("(min-width: 901px)");
 
+// Own the scroll position: no browser restoration, start at the top.
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.scrollTo(0, 0);
+
 if (desktop.matches) {
-  const parallax = initParallax(slides);
-  initNav({ slides, labels, onChange: (from, to, dir) => parallax.play(from, to, dir) });
+  // Controlled paging feeds the scroll position to the parallax every frame.
+  initNav({ slides, labels, onScroll: (s) => parallax.update(s) });
 } else {
   app.style.transform = "none"; // native scroll-snap drives paging
   initScrollNav({ slides, labels });
+  const onScroll = () => parallax.updateMobile(window.scrollY);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 }
 
 // Re-init cleanly when crossing the desktop/mobile breakpoint.
