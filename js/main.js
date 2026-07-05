@@ -1,5 +1,5 @@
 import { bio, cases } from "./data.js";
-import { initNav } from "./nav.js";
+import { initNav, initScrollNav } from "./nav.js";
 import { initParallax } from "./parallax.js";
 
 const app = document.getElementById("app");
@@ -105,7 +105,17 @@ window.addEventListener("resize", scaleShowcases);
 window.addEventListener("load", scaleShowcases);
 
 const slides = [...app.querySelectorAll(".slide")];
-const parallax = initParallax(slides);
-initNav({ slides, onChange: (from, to, dir) => parallax.play(from, to, dir) });
+const desktop = window.matchMedia("(min-width: 901px)");
 
-console.log("[portfolio] rendered", cases.length, "cases");
+if (desktop.matches) {
+  const parallax = initParallax(slides);
+  initNav({ slides, onChange: (from, to, dir) => parallax.play(from, to, dir) });
+} else {
+  app.style.transform = "none"; // native scroll-snap drives paging
+  initScrollNav({ slides });
+}
+
+// Re-init cleanly when crossing the desktop/mobile breakpoint.
+desktop.addEventListener("change", () => location.reload());
+
+console.log("[portfolio] rendered", cases.length, "cases", desktop.matches ? "(desktop)" : "(mobile)");

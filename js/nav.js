@@ -1,7 +1,9 @@
 // Page-like slide navigation: one gesture = one slide.
 // Controlled index tweens the #app wrapper transform via GSAP.
 
-const DURATION = 0.9; // seconds; wheel lock matches this
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const DURATION = reduce ? 0 : 0.9; // seconds; wheel lock matches this
+const LOCK_MS = 900;
 
 export function initNav({ slides, onChange = () => {} }) {
   const wrap = slides[0].parentElement; // #app
@@ -52,7 +54,7 @@ export function initNav({ slides, onChange = () => {} }) {
       if (Math.abs(e.deltaY) < 8) return;
       wheelLock = true;
       goTo(index + (e.deltaY > 0 ? 1 : -1));
-      setTimeout(() => (wheelLock = false), DURATION * 1000);
+      setTimeout(() => (wheelLock = false), LOCK_MS);
     },
     { passive: false }
   );
@@ -81,4 +83,33 @@ export function initNav({ slides, onChange = () => {} }) {
   const api = { goTo, current: () => index };
   window.__nav = api;
   return api;
+}
+
+// Mobile / touch: native CSS scroll-snap drives paging. Dots jump via
+// scrollIntoView; an IntersectionObserver keeps the active dot + cue in sync.
+export function initScrollNav({ slides }) {
+  const dots = document.getElementById("dots");
+  slides.forEach((s, i) => {
+    const b = document.createElement("button");
+    b.className = "dot";
+    b.type = "button";
+    b.setAttribute("aria-label", `Go to slide ${i + 1}`);
+    b.addEventListener("click", () => s.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }));
+    dots.appendChild(b);
+  });
+  const dotEls = [...dots.children];
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const i = slides.indexOf(e.target);
+        dotEls.forEach((d, j) => d.setAttribute("aria-current", j === i ? "true" : "false"));
+        if (i > 0) document.body.dataset.cue = "off";
+      });
+    },
+    { threshold: 0.5 }
+  );
+  slides.forEach((s) => io.observe(s));
+  window.__nav = { current: () => dotEls.findIndex((d) => d.getAttribute("aria-current") === "true") };
 }

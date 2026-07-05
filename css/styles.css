@@ -118,3 +118,25 @@ a { color: inherit; }
 }
 body[data-cue="off"] #scroll-cue { opacity: 0; pointer-events: none; animation: none; }
 @keyframes cue-bob { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, 4px); } }
+
+/* ── mobile / narrow: stacked slides + native scroll-snap ────────────── */
+@media (max-width: 900px) {
+  body { overflow: hidden auto; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; }
+  #app { transform: none !important; }
+  .slide {
+    scroll-snap-align: start; padding: 8vh 6vw;
+    height: auto; min-height: 100dvh; overflow: visible;
+  }
+  .case {
+    grid-template-columns: 1fr; gap: 22px; align-items: start;
+    width: 100%;
+  }
+  .bio__headline { flex-wrap: wrap; }
+  .bio__meta { margin-left: 0; width: 100%; }
+  #dots { right: 14px; gap: 10px; }
+}
+
+/* ── reduced motion: kill the scroll-cue bob ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #scroll-cue { animation: none; }
+}
