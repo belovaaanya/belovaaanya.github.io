@@ -1,4 +1,5 @@
 import { bio, cases } from "./data.js";
+import { initNav } from "./nav.js";
 
 const app = document.getElementById("app");
 
@@ -101,5 +102,8 @@ cases.forEach((c) => app.appendChild(renderCase(c)));
 scaleShowcases();
 window.addEventListener("resize", scaleShowcases);
 window.addEventListener("load", scaleShowcases);
+
+const slides = [...app.querySelectorAll(".slide")];
+initNav({ slides, onChange: () => {} }); // parallax hook wired in Task 7
 
 console.log("[portfolio] rendered", cases.length, "cases");
