@@ -31,3 +31,66 @@ body {
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
+
+/* ── slides ──────────────────────────────────────────────────────────── */
+#app { will-change: transform; }
+.slide {
+  width: 100vw; height: 100vh; height: 100dvh;
+  display: grid; place-items: center;
+  padding: 0 4vw; overflow: hidden;
+}
+
+/* ── pills (shared) ──────────────────────────────────────────────────── */
+.pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--tag-bg); color: var(--muted); border-radius: var(--radius);
+  font-weight: 500; text-decoration: none; white-space: nowrap;
+}
+.pill--sm { height: 24px; padding: 4px 16px; font-size: 12px; }
+.pill--lg { height: 40px; padding: 4px 16px; font-size: 16px; }
+
+/* ── bio slide ───────────────────────────────────────────────────────── */
+.bio { width: 100%; max-width: 1350px; }
+.bio__headline { display: flex; align-items: center; gap: 10px; }
+.bio__name, .bio__role {
+  font-weight: 500; font-size: clamp(28px, 4.2vw, 40px);
+  line-height: 1.1; letter-spacing: -0.02em;
+}
+.bio__photo {
+  width: clamp(78px, 8vw, 110px); aspect-ratio: 1; border-radius: 50%;
+  object-fit: cover; transform: rotate(-0.36deg); flex: none;
+}
+.bio__meta {
+  margin-top: 16px; margin-left: auto;
+  width: min(369px, 42%); display: flex; flex-direction: column; gap: 16px;
+}
+.bio__tags { display: flex; gap: 4px; }
+.bio__text { margin: 0; font-size: 10px; line-height: 1.4; }
+
+/* ── case slide ──────────────────────────────────────────────────────── */
+.case {
+  width: min(1350px, 92vw); margin: 0 auto;
+  display: grid; grid-template-columns: 832fr 492fr; gap: 24px;
+  align-items: end;
+}
+.showcase-wrap { position: relative; width: 100%; }
+.showcase {
+  position: absolute; top: 0; left: 0;
+  transform-origin: top left; overflow: hidden;
+}
+.layer { position: absolute; overflow: hidden; will-change: transform; }
+.layer__img { position: absolute; display: block; max-width: none; }
+
+.panel { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.panel__tags { display: flex; gap: 4px; }
+.panel__title {
+  margin: 0; font-weight: 500; font-size: clamp(26px, 2.9vw, 40px);
+  line-height: 1.1; letter-spacing: -0.02em; max-width: 332px;
+}
+.panel__desc { display: flex; flex-direction: column; gap: 1.4em; max-width: 352px; }
+.panel__desc p { margin: 0; font-size: 12px; line-height: 1.4; }
+.panel__btn {
+  width: 53px; height: 56px; border-radius: var(--radius);
+  background: var(--tag-bg); transition: background .2s;
+}
+.panel__btn:hover { background: rgba(255, 255, 255, 0.18); }
