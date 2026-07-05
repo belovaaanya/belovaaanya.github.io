@@ -10,6 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────
 
 export const bio = {
+  navLabel: "Bio",
   name: "Anna Belova",
   role: "Product Designer",
   photo: "assets/bio/photo.png",
@@ -36,6 +37,7 @@ const PLACEHOLDER_DESC = [
 export const cases = [
   {
     id: "fast-checkout",
+    navLabel: "Fast Checkout",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -47,6 +49,7 @@ export const cases = [
   },
   {
     id: "health",
+    navLabel: "Health",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -59,6 +62,7 @@ export const cases = [
   },
   {
     id: "dashboard",
+    navLabel: "Dashboard",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -70,6 +74,7 @@ export const cases = [
   },
   {
     id: "streaming",
+    navLabel: "Streaming",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -82,6 +87,7 @@ export const cases = [
   },
   {
     id: "coffee",
+    navLabel: "Coffee",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -94,6 +100,7 @@ export const cases = [
   },
   {
     id: "portraits",
+    navLabel: "Portraits",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],
@@ -110,6 +117,7 @@ export const cases = [
   },
   {
     id: "crypto",
+    navLabel: "Crypto",
     title: "E-commerce Fast Checkout",
     description: PLACEHOLDER_DESC,
     tags: ["UI Concept", "Retail"],

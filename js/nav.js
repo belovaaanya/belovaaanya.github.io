@@ -5,22 +5,31 @@ const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const DURATION = reduce ? 0 : 0.9; // seconds; wheel lock matches this
 const LOCK_MS = 900;
 
-export function initNav({ slides, onChange = () => {} }) {
+// Build the dot rail. Each dot carries a hover/focus hint = the slide title.
+function buildDots(labels, onClick) {
+  const dots = document.getElementById("dots");
+  dots.innerHTML = "";
+  labels.forEach((label, i) => {
+    const b = document.createElement("button");
+    b.className = "dot";
+    b.type = "button";
+    b.setAttribute("aria-label", `Go to ${label}`);
+    const hint = document.createElement("span");
+    hint.className = "dot__hint";
+    hint.textContent = label;
+    b.appendChild(hint);
+    b.addEventListener("click", () => onClick(i));
+    dots.appendChild(b);
+  });
+  return [...dots.children];
+}
+
+export function initNav({ slides, labels, onChange = () => {} }) {
   const wrap = slides[0].parentElement; // #app
   let index = 0;
   let animating = false;
 
-  // build dots
-  const dots = document.getElementById("dots");
-  slides.forEach((_, i) => {
-    const b = document.createElement("button");
-    b.className = "dot";
-    b.type = "button";
-    b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-    b.addEventListener("click", () => goTo(i));
-    dots.appendChild(b);
-  });
-  const dotEls = [...dots.children];
+  const dotEls = buildDots(labels, (i) => goTo(i));
   const setDots = () =>
     dotEls.forEach((d, i) => d.setAttribute("aria-current", i === index ? "true" : "false"));
 
@@ -87,17 +96,10 @@ export function initNav({ slides, onChange = () => {} }) {
 
 // Mobile / touch: native CSS scroll-snap drives paging. Dots jump via
 // scrollIntoView; an IntersectionObserver keeps the active dot + cue in sync.
-export function initScrollNav({ slides }) {
-  const dots = document.getElementById("dots");
-  slides.forEach((s, i) => {
-    const b = document.createElement("button");
-    b.className = "dot";
-    b.type = "button";
-    b.setAttribute("aria-label", `Go to slide ${i + 1}`);
-    b.addEventListener("click", () => s.scrollIntoView({ behavior: reduce ? "auto" : "smooth" }));
-    dots.appendChild(b);
-  });
-  const dotEls = [...dots.children];
+export function initScrollNav({ slides, labels }) {
+  const dotEls = buildDots(labels, (i) =>
+    slides[i].scrollIntoView({ behavior: reduce ? "auto" : "smooth" })
+  );
 
   const io = new IntersectionObserver(
     (entries) => {

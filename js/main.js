@@ -105,14 +105,15 @@ window.addEventListener("resize", scaleShowcases);
 window.addEventListener("load", scaleShowcases);
 
 const slides = [...app.querySelectorAll(".slide")];
+const labels = [bio.navLabel, ...cases.map((c) => c.navLabel)];
 const desktop = window.matchMedia("(min-width: 901px)");
 
 if (desktop.matches) {
   const parallax = initParallax(slides);
-  initNav({ slides, onChange: (from, to, dir) => parallax.play(from, to, dir) });
+  initNav({ slides, labels, onChange: (from, to, dir) => parallax.play(from, to, dir) });
 } else {
   app.style.transform = "none"; // native scroll-snap drives paging
-  initScrollNav({ slides });
+  initScrollNav({ slides, labels });
 }
 
 // Re-init cleanly when crossing the desktop/mobile breakpoint.
