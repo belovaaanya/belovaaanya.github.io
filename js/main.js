@@ -88,8 +88,10 @@ function renderBio(b) {
   const s = document.createElement("section");
   s.className = "block bio";
 
-  // top-right action bar: only the buttons flagged for the header (CV / TG)
+  // top-right action bar: header buttons (CV / TG) + the theme toggle to their right
   const actions = buildActions(b.actions.filter((a) => a.inHeader), "bio__actions");
+  const toggle = document.getElementById("theme-toggle");
+  if (toggle) actions.appendChild(toggle);
 
   const headline = document.createElement("div");
   headline.className = "bio__headline";
