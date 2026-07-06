@@ -36,6 +36,9 @@ box), and `summary[]` (array of paragraph strings shown beside the image — one
 contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `contactTitle`. The
 header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.
 
+**Keep the docs in sync:** when you change the content model, fonts, theming, deploy, or file
+layout, update `README.md` (and this file) in the **same change** — don't let them go stale.
+
 ## Architecture (the parts that span multiple files)
 
 **Data-driven render.** `js/main.js` builds the whole DOM from `js/data.js` at load: `renderBio`,
