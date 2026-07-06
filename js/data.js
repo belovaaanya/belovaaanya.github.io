@@ -56,7 +56,7 @@ export const cases = [
   },
   {
     id: "iontrack",
-    tags: ["Health-Tech", "Продукт с нуля", "Design System"],
+    tags: ["Health-Tech", "Built from Scratch", "Design System"],
     title: "Превратила **медицинскую технологию** в цифровой продукт",
     accent: "#4963fa",
     client: "IonTrack",
