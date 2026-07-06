@@ -28,7 +28,7 @@ export const bio = {
   contactTitle: "Свяжитесь со мной",
   actions: [
     { label: "Смотреть CV", href: "https://drive.google.com/file/d/1Leu2IMuaoQ2Q-Z0E0Wx5vSA7uhreS-Vx/view?usp=sharing", variant: "ghost", inHeader: true },
-    { label: "Написать по почте", href: "#", variant: "ghost" }, // TODO: mailto: real email
+    { label: "Написать по почте", href: "mailto:belova.annya@gmail.com", variant: "ghost" },
     { label: "Написать в tg", href: "https://t.me/belovannaaa", variant: "tg", inHeader: true },
   ],
   text:

@@ -35,7 +35,7 @@ function makeLink(a, className) {
   el.href = a.href;
   el.className = className;
   el.textContent = a.label;
-  if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
+  if (/^https?:/i.test(a.href)) { el.target = "_blank"; el.rel = "noopener"; } // new tab for real links only
   return el;
 }
 
