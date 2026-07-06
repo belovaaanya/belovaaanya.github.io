@@ -84,13 +84,15 @@ accents are used as-is on dark.
 ## Fonts (and the Cyrillic rule)
 
 - **`Rubik`** (`--font-rubik`, self-hosted, split latin + cyrillic per weight with
-  `unicode-range`): **500** for the bio name/role, case titles, and the CV/TG action buttons;
-  **400** for tags/pills; **300 italic** for client names. The system stack (`--font-sans`) is
-  now only the fallback inside `--font-rubik` (SF Pro is no longer used directly).
-- **`JetBrains Mono`** (`--font-mono`, self-hosted, latin + cyrillic): the **bio paragraph** and
-  **case summaries**. It has full Cyrillic, so it's safe for the Russian body copy — this replaced
-  **Intel One Mono**, which has **no Cyrillic glyphs** and could not render the Russian text. The
-  Cyrillic rule still stands: never put Russian copy in a font that lacks Cyrillic glyphs.
+  `unicode-range`) is the **only** typeface — it covers the whole site: **500** for the bio
+  name/role, case titles, and the CV/TG action buttons; **400** for tags/pills and the body copy
+  (the **bio paragraph** and **case summaries**, at **14px**); **500 italic** for client names. The
+  system stack (`--font-sans`) is now only the fallback inside `--font-rubik` (SF Pro is no longer
+  used directly).
+- The body copy used to be **JetBrains Mono** (before that, **Intel One Mono** — which has **no
+  Cyrillic glyphs** and couldn't render the Russian text); both are gone now. The Cyrillic rule
+  still stands: never put Russian copy in a font that lacks Cyrillic glyphs. Rubik's 400 latin +
+  cyrillic subsets cover it.
 
 ## Assets
 

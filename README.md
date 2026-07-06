@@ -60,11 +60,9 @@ loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected
 
 ## Fonts
 
-- Bio name/role, case titles, CV/TG buttons (**500**), tags/pills (**400**), client names
-  (**300 italic**): **Rubik** — self-hosted, split latin + cyrillic per weight. The system stack
-  is only the fallback.
-- Bio paragraph + case summaries: **JetBrains Mono** (self-hosted, latin + cyrillic) — it has full
-  Cyrillic, which the Russian body copy needs.
+- Everything uses **Rubik** — self-hosted, split latin + cyrillic per weight, system stack only as
+  fallback. Bio name/role, case titles, CV/TG buttons (**500**); tags/pills and the bio paragraph +
+  case summaries (**400**, 14px body); client names (**500 italic**).
 
 ## Theming & motion
 
@@ -85,7 +83,7 @@ css/styles.css      all styles: fonts, pills/buttons, showcase, reveal, theming,
 js/data.js          ALL content — edit here (bio + cases[])
 js/main.js          renders bio/cases/footer from data.js, scales showcase images,
                     reveal-on-scroll (IntersectionObserver), theme toggle
-fonts/              Rubik (400 / 500 / 300-italic) + JetBrains Mono — self-hosted (latin + cyrillic)
+fonts/              Rubik (400 / 500 / 500-italic) — self-hosted (latin + cyrillic)
 assets/<case-id>/   case images (WebP)
 serve.py            no-cache static dev server
 .github/workflows/  GitHub Pages deploy (Actions workflow; retries the deploy step)
