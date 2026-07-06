@@ -79,14 +79,21 @@ function renderBio(b) {
 
   const meta = document.createElement("div");
   meta.className = "bio__meta";
-  const tags = document.createElement("div");
-  tags.className = "bio__tags";
-  b.tags.forEach((t) => tags.appendChild(pill(t.label, t.href)));
+
+  const pills = document.createElement("div");
+  pills.className = "bio__pills";
+  b.credentials.forEach((c) => pills.appendChild(pill(c)));
+  b.links.forEach((l) => {
+    const el = pill(l.label, l.href);
+    el.classList.add("pill--link");
+    pills.appendChild(el);
+  });
+
   const text = document.createElement("p");
   text.className = "bio__text";
   text.textContent = b.text;
-  meta.append(tags, text);
 
+  meta.append(pills, text);
   s.append(reveal(headline, 0), reveal(meta, 1));
   return s;
 }
@@ -125,16 +132,10 @@ function renderCase(c) {
   reveal(media, i++);
 
   const body = document.createElement("div");
-  body.className = "case__body";
-  c.body.forEach((blk) => {
-    if (blk.h) {
-      const h = document.createElement("p");
-      h.className = "h";
-      h.textContent = blk.h;
-      body.appendChild(h);
-    }
+  body.className = "case__summary";
+  c.summary.forEach((t) => {
     const p = document.createElement("p");
-    p.textContent = blk.t;
+    p.textContent = t;
     body.appendChild(p);
   });
   reveal(body, i++);
