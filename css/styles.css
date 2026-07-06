@@ -104,6 +104,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+html { -webkit-tap-highlight-color: transparent; } /* no blue tap flash on any element (mobile) */
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--bg);
@@ -187,6 +188,9 @@ html.js .reveal {
   -webkit-user-select: none;
   user-select: none;
 }
+/* No focus ring on tap/click (the browser's default can be blue on mobile); keyboard :focus-visible still shows one */
+.action:focus:not(:focus-visible),
+#theme-toggle:focus:not(:focus-visible) { outline: none; }
 /* Hover effects only on real-pointer devices — prevents sticky hover on touch */
 @media (hover: hover) {
   .action:hover { transform: translateY(-1px); }
