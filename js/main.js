@@ -54,6 +54,12 @@ function makeLink(a, className) {
   el.className = className;
   el.textContent = a.label;
   if (/^https?:/i.test(a.href)) { el.target = "_blank"; el.rel = "noopener"; } // new tab for real links only
+  // Feed the cursor position to the CSS hover glow (see .action::before in styles.css).
+  el.addEventListener("pointermove", (e) => {
+    const r = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+    el.style.setProperty("--my", `${e.clientY - r.top}px`);
+  });
   return el;
 }
 
