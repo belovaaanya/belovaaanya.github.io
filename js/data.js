@@ -23,7 +23,7 @@
 export const bio = {
   name: "Анна Белова",
   role: "Продуктовый дизайнер",
-  photo: "assets/bio/photo.png",
+  photo: "assets/bio/photo.webp",
   credentials: ["6 лет в UX", "4 года в Enterprise Fintech"],
   contactTitle: "Свяжитесь со мной",
   actions: [
@@ -47,7 +47,7 @@ export const cases = [
     img: {
       w: 970, h: 556, bg: "#050506", radius: 32,
       layers: [
-        { src: "assets/alfa/dashboard.png", box: [38, 30, 894, 497], radius: 0, crop: null },
+        { src: "assets/alfa/dashboard.webp", box: [38, 30, 894, 497], radius: 0, crop: null },
       ],
     },
     summary: [
@@ -63,9 +63,9 @@ export const cases = [
     img: {
       w: 970, h: 539, bg: null, radius: 0,
       layers: [
-        { src: "assets/iontrack/main.png", box: [0, -1, 691, 532], radius: 40, crop: [-0.3, -0.04, 150.09, 106.66] },
-        { src: "assets/iontrack/main.png", box: [714, 7, 246, 524], radius: 34, crop: [-290.82, -5.53, 431.56, 110.93] },
-        { src: "assets/iontrack/phone.png", box: [704, 0, 265.545, 540.862], radius: 0, crop: null },
+        { src: "assets/iontrack/main.webp", box: [0, -1, 691, 532], radius: 40, crop: [-0.3, -0.04, 150.09, 106.66] },
+        { src: "assets/iontrack/main.webp", box: [714, 7, 246, 524], radius: 34, crop: [-290.82, -5.53, 431.56, 110.93] },
+        { src: "assets/iontrack/phone.webp", box: [704, 0, 265.545, 540.862], radius: 0, crop: null },
       ],
     },
     summary: [
@@ -81,7 +81,7 @@ export const cases = [
     img: {
       w: 970, h: 539, bg: "#ff6b48", radius: 32,
       layers: [
-        { src: "assets/corgi/main.png", box: [0, 8, 955, 523], radius: 0, crop: null },
+        { src: "assets/corgi/main.webp", box: [0, 8, 955, 523], radius: 0, crop: null },
       ],
     },
     summary: [
@@ -97,7 +97,7 @@ export const cases = [
     img: {
       w: 970, h: 539, bg: "#ff6b48", radius: 32,
       layers: [
-        { src: "assets/drinkit/main.png", box: [0, 0, 970, 656], radius: 0, crop: [0, -4.14, 100, 109.2] },
+        { src: "assets/drinkit/main.webp", box: [0, 0, 970, 656], radius: 0, crop: [0, -4.14, 100, 109.2] },
       ],
     },
     summary: [
@@ -113,7 +113,7 @@ export const cases = [
     img: {
       w: 970, h: 539, bg: null, radius: 32,
       layers: [
-        { src: "assets/streaming/main.png", box: [-13, -3, 997, 546], radius: 0, crop: null },
+        { src: "assets/streaming/main.webp", box: [-13, -3, 997, 546], radius: 0, crop: null },
       ],
     },
     summary: [
@@ -129,7 +129,7 @@ export const cases = [
     img: {
       w: 970, h: 539, bg: "#171719", radius: 32,
       layers: [
-        { src: "assets/ecommerce/main.png", box: [122, -2, 726, 541], radius: 32, crop: [-19.54, -0.04, 135.47, 100.08] },
+        { src: "assets/ecommerce/main.webp", box: [122, -2, 726, 541], radius: 32, crop: [-19.54, -0.04, 135.47, 100.08] },
       ],
     },
     summary: [
@@ -145,12 +145,12 @@ export const cases = [
     img: {
       w: 970, h: 657, bg: null, radius: 0,
       layers: [
-        { src: "assets/illustrations/p259.png", box: [342.33, 0, 285.343, 329.826], radius: 32, crop: [-1.66, 0, 103.29, 118.77] },
-        { src: "assets/illustrations/p254.png", box: [639.92, 0, 330.081, 330.081], radius: 32, crop: null },
-        { src: "assets/illustrations/p255.png", box: [641, 342, 329, 307], radius: 32, crop: [0, 0, 100, 107.34] },
-        { src: "assets/illustrations/p256.png", box: [343, 342, 286, 307], radius: 32, crop: [-5.43, -3.82, 115.99, 103.68] },
-        { src: "assets/illustrations/p257.png", box: [0, 342, 331, 307], radius: 32, crop: [0, -2.15, 100.05, 107.87] },
-        { src: "assets/illustrations/p258.png", box: [0, 0, 330.081, 330.081], radius: 32, crop: null },
+        { src: "assets/illustrations/p259.webp", box: [342.33, 0, 285.343, 329.826], radius: 32, crop: [-1.66, 0, 103.29, 118.77] },
+        { src: "assets/illustrations/p254.webp", box: [639.92, 0, 330.081, 330.081], radius: 32, crop: null },
+        { src: "assets/illustrations/p255.webp", box: [641, 342, 329, 307], radius: 32, crop: [0, 0, 100, 107.34] },
+        { src: "assets/illustrations/p256.webp", box: [343, 342, 286, 307], radius: 32, crop: [-5.43, -3.82, 115.99, 103.68] },
+        { src: "assets/illustrations/p257.webp", box: [0, 342, 331, 307], radius: 32, crop: [0, -2.15, 100.05, 107.87] },
+        { src: "assets/illustrations/p258.webp", box: [0, 0, 330.081, 330.081], radius: 32, crop: null },
       ],
     },
     summary: [

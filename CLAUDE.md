@@ -87,9 +87,12 @@ accents are used as-is on dark.
 ## Assets
 
 Case images are downloaded from Figma into `assets/<case-id>/`. **Figma asset URLs expire ~7 days**,
-so images are always pulled into the repo, never hotlinked. When refreshing from a new Figma
-revision: re-fetch each node's `get_design_context`, download the new URLs, and update
-`js/data.js` + `docs/superpowers/asset-manifest.md` (the node→file→coordinates mapping).
+so images are always pulled into the repo, never hotlinked. Images are stored as **WebP**
+(converted from the Figma PNG exports with `cwebp -q 80` — cut ~12.5 MB of PNGs to ~0.8 MB for
+fast loading; conversion preserves pixel dimensions, so layer `crop` geometry is unaffected).
+When refreshing from a new Figma revision: re-fetch each node's `get_design_context`, download the
+new URLs, convert to `.webp`, and update `js/data.js` + `docs/superpowers/asset-manifest.md`
+(the node→file→coordinates mapping).
 
 ## Where the design intent is recorded
 
