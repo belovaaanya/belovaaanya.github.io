@@ -26,8 +26,11 @@ works — there's no build step.
 
 ## Deploy
 
-Hosted on **GitHub Pages** (source: `main` branch, root). A `.nojekyll` file makes Pages serve
-the files as-is (no Jekyll). **Any push to `main` redeploys** (~1 min).
+Hosted on **GitHub Pages**, deployed by a **GitHub Actions workflow**
+(`.github/workflows/deploy.yml`) on every push to `main` (~1 min). The workflow uploads the repo
+root as a static artifact and deploys it, **retrying the deploy step up to 3× with backoff** —
+Pages' deploy backend intermittently returns a transient "Deployment failed, try again later".
+You can also re-run it manually from the **Actions** tab (`workflow_dispatch`).
 
 ## Edit the content
 
@@ -85,7 +88,8 @@ js/main.js          renders bio/cases/footer from data.js, scales showcase image
 fonts/              Rubik (400 / 500 / 300-italic) + JetBrains Mono — self-hosted (latin + cyrillic)
 assets/<case-id>/   case images (WebP)
 serve.py            no-cache static dev server
-.nojekyll           serve files raw on GitHub Pages
+.github/workflows/  GitHub Pages deploy (Actions workflow; retries the deploy step)
+.nojekyll           serve files raw (Jekyll off)
 docs/superpowers/   design spec, plan, asset manifest
 CLAUDE.md           guide for AI agents working in this repo
 ```
