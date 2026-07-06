@@ -20,7 +20,8 @@ No install or build step.
 All copy, tags, links and images live in **`js/data.js`** — the only file you
 need to touch to change content:
 
-- `bio` — name, role, photo, contact tags (CV / TG links), bio text.
+- `bio` — name, role, photo, `credentials` (plain-text pills), `links` (CV / TG),
+  and bio text.
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)
   - `title` — wrap the highlighted fragment in `**double asterisks**`
@@ -30,15 +31,16 @@ need to touch to change content:
     (raw Figma design px; `crop` = inner `[left%,top%,width%,height%]` or `null`
     for `object-fit:cover`). The box is rendered at design size and scaled to
     fit its column.
-  - `body` — array of blocks: `{ h, t }` = bold heading + muted paragraph,
-    `{ t }` = muted paragraph only.
+  - `summary` — array of paragraph strings shown beside the image (one `<p>` each).
 
 ## Fonts
 
-- Headings / titles / tags: system stack — real **SF Pro** on Apple devices,
-  graceful sans fallback elsewhere (all carry Cyrillic).
-- Client names: **Rubik** Light Italic (self-hosted, latin + cyrillic).
-- Bio meta: **Intel One Mono** (self-hosted).
+- Bio name / role: system stack — real **SF Pro** on Apple devices, graceful
+  sans fallback elsewhere (all carry Cyrillic).
+- Titles (500), tags/pills (400), client names (300 italic): **Rubik**
+  (self-hosted, latin + cyrillic per weight).
+- Bio paragraph + case summaries: **JetBrains Mono** (self-hosted, latin +
+  cyrillic) — has full Cyrillic for the Russian body copy.
 
 Honors `prefers-reduced-motion` (reveal animation disabled, content shown).
 
@@ -49,7 +51,7 @@ index.html            markup + module include
 css/styles.css        all styles + reveal animation + responsive + reduced-motion
 js/data.js            content (edit here)
 js/main.js            renders blocks, scales images, reveals on scroll (IntersectionObserver)
-fonts/                Intel One Mono + Rubik (self-hosted)
+fonts/                Rubik + JetBrains Mono (self-hosted)
 assets/               case images, by folder
 docs/superpowers/     design spec, plan, asset manifest
 ```

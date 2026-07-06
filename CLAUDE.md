@@ -30,8 +30,9 @@ There is no build, lint, or test step — it's static files served as-is.
 **All copy, images, tags, links, and per-case config live in `js/data.js` — it's the only file
 to touch to change content.** `main.js` renders everything from the `bio` object and `cases[]`
 array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double asterisks**`),
-`accent` (color of that fragment), `client` (italic line, or `null`), `img` (image box), and
-`body[]` (blocks: `{h,t}` = bold heading + muted paragraph, `{t}` = paragraph only).
+`accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
+box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
+`bio` object has `credentials[]` (plain-text pills) and `links[]` (CV / TG, rendered as link-pills).
 
 ## Architecture (the parts that span multiple files)
 
@@ -66,15 +67,17 @@ extension leaves the site's own colors alone. Per-case title accents are darkene
 backgrounds via `--accent-ink` (`color-mix`) so light hues (e.g. the green) stay readable; brand
 accents are used as-is on dark.
 
-## Fonts (and a Cyrillic gotcha)
+## Fonts (and the Cyrillic rule)
 
-- **Headings / titles / tags / body:** system stack (`--font-sans`) — real SF Pro on Apple
-  devices, sans fallback elsewhere. Chosen deliberately: most body copy is **Russian (Cyrillic)**.
-- **`Intel One Mono`** (self-hosted) is used only for the **bio meta** (English). It has **no
-  Cyrillic glyphs** — do not use it for Russian text; that's why case body columns use the sans
-  stack even though the Figma sometimes shows mono there.
-- **`Rubik` Light Italic** (self-hosted, split latin + cyrillic `@font-face` with `unicode-range`)
-  is used for the italic client names.
+- **Bio name / role (headline):** system stack (`--font-sans`) — real SF Pro on Apple devices,
+  sans fallback elsewhere.
+- **`Rubik`** (`--font-rubik`, self-hosted, split latin + cyrillic per weight with
+  `unicode-range`): **500** for case titles, **400** for tags/pills, **300 italic** for client
+  names.
+- **`JetBrains Mono`** (`--font-mono`, self-hosted, latin + cyrillic): the **bio paragraph** and
+  **case summaries**. It has full Cyrillic, so it's safe for the Russian body copy — this replaced
+  **Intel One Mono**, which has **no Cyrillic glyphs** and could not render the Russian text. The
+  Cyrillic rule still stands: never put Russian copy in a font that lacks Cyrillic glyphs.
 
 ## Assets
 
