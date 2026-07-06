@@ -43,7 +43,7 @@ content. `js/main.js` renders the bio, cases and footer from it.
   - `actions` — contact buttons `{ label, href, variant: "ghost" | "tg", inHeader? }`. All appear
     in the **footer** under `contactTitle`; those marked `inHeader: true` also appear as the
     **top-right header buttons**. `ghost` = translucent, `tg` = solid orange.
-  - `contactTitle` — heading above the footer buttons (e.g. `"Свяжитесь со мной"`)
+  - `contactTitle` — heading above the footer buttons (e.g. `"Связаться со мной"`)
   - `text` — the bio paragraph
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)

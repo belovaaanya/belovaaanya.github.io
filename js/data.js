@@ -25,7 +25,7 @@ export const bio = {
   role: "Продуктовый дизайнер",
   photo: "assets/bio/photo.webp",
   credentials: ["6 лет в UX", "4 года в Enterprise Fintech"],
-  contactTitle: "Свяжитесь со мной",
+  contactTitle: "Связаться со мной",
   actions: [
     { label: "Смотреть CV", href: "https://drive.google.com/file/d/1Leu2IMuaoQ2Q-Z0E0Wx5vSA7uhreS-Vx/view?usp=sharing", variant: "ghost", inHeader: true },
     { label: "Написать по почте", href: "mailto:belova.annya@gmail.com", variant: "ghost" },
@@ -56,7 +56,7 @@ export const cases = [
   },
   {
     id: "iontrack",
-    tags: ["Health-Tech", "0 to 1", "Design System"],
+    tags: ["Health-Tech", "Продукт с нуля", "Design System"],
     title: "Превратила **медицинскую технологию** в цифровой продукт",
     accent: "#4963fa",
     client: "IonTrack",
