@@ -24,8 +24,8 @@ export const bio = {
   photo: "assets/bio/photo.png",
   credentials: ["6 лет в UX", "4 года в Enterprise Fintech"],
   actions: [
-    { label: "Смотреть CV", href: "#", variant: "ghost" },
-    { label: "Написать в tg", href: "#", variant: "tg" },
+    { label: "Смотреть CV", href: "#", variant: "ghost" }, // TODO: real CV link
+    { label: "Написать в tg", href: "https://t.me/belovannaaa", variant: "tg" },
   ],
   text:
     "Продуктовый дизайнер с 6-летним опытом в UX. Проектирую сложные B2B-продукты " +

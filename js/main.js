@@ -29,6 +29,21 @@ function reveal(el, i) {
   return el;
 }
 
+// CV / TG action buttons — shared by the bio header and the footer.
+function buildActions(actions, contextClass) {
+  const wrap = document.createElement("div");
+  wrap.className = contextClass ? `actions ${contextClass}` : "actions";
+  actions.forEach((a) => {
+    const el = document.createElement("a");
+    el.href = a.href;
+    el.className = `action action--${a.variant}`;
+    el.textContent = a.label;
+    if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
+    wrap.appendChild(el);
+  });
+  return wrap;
+}
+
 function buildLayer(layer) {
   const [x, y, w, h] = layer.box;
   const box = document.createElement("div");
@@ -71,16 +86,7 @@ function renderBio(b) {
   s.className = "block bio";
 
   // top-right action bar: CV / TG buttons
-  const actions = document.createElement("div");
-  actions.className = "bio__actions";
-  b.actions.forEach((a) => {
-    const el = document.createElement("a");
-    el.href = a.href;
-    el.className = `action action--${a.variant}`;
-    el.textContent = a.label;
-    if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
-    actions.appendChild(el);
-  });
+  const actions = buildActions(b.actions, "bio__actions");
 
   const headline = document.createElement("div");
   headline.className = "bio__headline";
@@ -158,6 +164,13 @@ function renderCase(c) {
   return s;
 }
 
+function renderFooter(b) {
+  const f = document.createElement("footer");
+  f.className = "block footer";
+  f.appendChild(reveal(buildActions(b.actions, "footer__actions"), 0));
+  return f;
+}
+
 /* ── scale each showcase from design px to its rendered width ─────────── */
 
 function sizeShowcases() {
@@ -171,6 +184,7 @@ function sizeShowcases() {
 
 app.appendChild(renderBio(bio));
 cases.forEach((c) => app.appendChild(renderCase(c)));
+app.appendChild(renderFooter(bio));
 
 sizeShowcases();
 window.addEventListener("resize", sizeShowcases);

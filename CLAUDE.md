@@ -33,13 +33,16 @@ array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double a
 `accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
 box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
 `bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX") and `actions[]` (the
-top-right CV / TG buttons: `{ label, href, variant: "ghost" | "tg" }`).
+CV / TG buttons: `{ label, href, variant: "ghost" | "tg" }`) — rendered both top-right in the
+header and in the footer.
 
 ## Architecture (the parts that span multiple files)
 
-**Data-driven render.** `js/main.js` builds the whole DOM from `js/data.js` at load: `renderBio`
-+ `renderCase` create `<section class="block …">` nodes and append them to `#app`. There is no
-templating engine and no HTML for content in `index.html` (just `#app` + the theme toggle).
+**Data-driven render.** `js/main.js` builds the whole DOM from `js/data.js` at load: `renderBio`,
+`renderCase`, and `renderFooter` create `<section/footer class="block …">` nodes and append them
+to `#app`. The CV/TG buttons come from `bio.actions` via the shared `buildActions()` helper — the
+same data drives both the bio header (`.bio__actions`) and the footer (`.footer__actions`). There
+is no templating engine and no HTML for content in `index.html` (just `#app` + the theme toggle).
 
 **Showcase image system (non-obvious).** Each case image is a composition of layers positioned in
 **raw Figma design pixels**. `data.js` stores `img.w/h` (the design box size) and `layers[]` with
