@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Static dev server that disables caching (so edits show up on reload)."""
+import os
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
@@ -13,7 +14,8 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    port = int(sys.argv[1]) if len(sys.argv) > 1 else 5555
+    # Explicit CLI arg wins; else honor $PORT (e.g. Claude Code preview); else default.
+    port = int(sys.argv[1]) if len(sys.argv) > 1 else int(os.environ.get("PORT", 5555))
     # Bind to all interfaces so other devices on the same LAN/Wi-Fi can reach it.
     host = sys.argv[2] if len(sys.argv) > 2 else "0.0.0.0"
     print(f"Serving on http://{host}:{port}  (Ctrl+C to stop)")
