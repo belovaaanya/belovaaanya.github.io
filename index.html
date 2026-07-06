@@ -3,10 +3,21 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <!-- The site manages its own light/dark theme — tell Dark Reader to stand down. -->
+  <meta name="darkreader-lock" />
   <title>Анна Белова — Продуктовый дизайнер</title>
+  <!-- Apply saved theme before paint to avoid a flash. -->
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <button id="theme-toggle" type="button" aria-label="Переключить тему"></button>
   <main id="app"></main>
   <script type="module" src="js/main.js"></script>
 </body>

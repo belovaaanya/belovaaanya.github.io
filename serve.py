@@ -14,4 +14,7 @@ class NoCacheHandler(SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 5555
-    HTTPServer(("127.0.0.1", port), NoCacheHandler).serve_forever()
+    # Bind to all interfaces so other devices on the same LAN/Wi-Fi can reach it.
+    host = sys.argv[2] if len(sys.argv) > 2 else "0.0.0.0"
+    print(f"Serving on http://{host}:{port}  (Ctrl+C to stop)")
+    HTTPServer((host, port), NoCacheHandler).serve_forever()
