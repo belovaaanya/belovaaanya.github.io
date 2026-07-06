@@ -17,9 +17,27 @@ function pill(label, href) {
   return el;
 }
 
-// Wrap **fragment** of the title in an accent span.
+// Bind short Russian prepositions/conjunctions to the next word with a non-breaking
+// space so they never hang at the end of a line (борьба с висячими предлогами).
+// Targets only genuine function words — a plain space elsewhere still wraps normally.
+const SHORT_WORDS = new Set([
+  "в", "во", "и", "а", "к", "ко", "с", "со", "о", "об", "у", "я", "на", "за", "из",
+  "от", "до", "по", "но", "не", "для", "при", "над", "под", "без", "про", "что", "как", "или",
+]);
+function nbsp(text) {
+  // For each word + trailing whitespace: if the word (ignoring surrounding
+  // punctuation / **accent** markers) is a short function word, glue it to the
+  // next word with a non-breaking space. Token-based, so every gap is handled
+  // exactly once — no boundary-consumption gaps, works next to punctuation.
+  return text.replace(/(\S+)(\s+)/g, (m, word) => {
+    const bare = word.replace(/^[^A-Za-zА-Яа-яЁё]+|[^A-Za-zА-Яа-яЁё]+$/g, "").toLowerCase();
+    return SHORT_WORDS.has(bare) ? word + "\u00A0" : m;
+  });
+}
+
+// Wrap **fragment** of the title in an accent span (after binding hanging prepositions).
 function titleHTML(title) {
-  return title.replace(/\*\*(.+?)\*\*/g, '<span class="accent">$1</span>');
+  return nbsp(title).replace(/\*\*(.+?)\*\*/g, '<span class="accent">$1</span>');
 }
 
 // Mark an element as reveal-on-scroll with its stagger index.
@@ -109,7 +127,7 @@ function renderBio(b) {
 
   const text = document.createElement("p");
   text.className = "bio__text";
-  text.textContent = b.text;
+  text.textContent = nbsp(b.text);
 
   meta.append(pills, text);
 
@@ -159,7 +177,7 @@ function renderCase(c) {
   body.className = "case__summary";
   c.summary.forEach((t) => {
     const p = document.createElement("p");
-    p.textContent = t;
+    p.textContent = nbsp(t);
     body.appendChild(p);
   });
   reveal(body, i++);
@@ -174,7 +192,7 @@ function renderFooter(b) {
   f.className = "block footer";
   const title = document.createElement("h2");
   title.className = "footer__title";
-  title.textContent = b.contactTitle;
+  title.textContent = nbsp(b.contactTitle);
   f.append(reveal(title, 0), reveal(buildActions(b.actions, "footer__actions"), 1));
   return f;
 }

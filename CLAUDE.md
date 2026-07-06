@@ -49,6 +49,11 @@ built with the shared `makeLink()` helper): the top-right header row shows only 
 heading. There is no templating engine and no HTML for content in `index.html` (just `#app` + the
 theme toggle).
 
+Russian prose (titles, case summaries, bio paragraph, footer heading) is passed through `nbsp()`,
+which glues short prepositions/conjunctions (the `SHORT_WORDS` set) to the next word with a
+non-breaking space so they don't hang at the end of a line (висячие предлоги). It's token-based
+and punctuation-agnostic; edit `SHORT_WORDS` to tune which words get bound.
+
 **Showcase image system (non-obvious).** Each case image is a composition of layers positioned in
 **raw Figma design pixels**. `data.js` stores `img.w/h` (the design box size) and `layers[]` with
 `box:[x,y,w,h]`, `radius`, and `crop:[l,t,w,h]%` (inner-image position; `null` = `object-fit:cover`).
