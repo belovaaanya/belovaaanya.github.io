@@ -117,7 +117,8 @@ a { color: inherit; }
 
 /* ── theme toggle ────────────────────────────────────────────────────── */
 #theme-toggle {
-  position: fixed; top: 20px; left: 20px; z-index: 20;
+  /* top matches #app's padding-top so the toggle lines up with the header action buttons */
+  position: fixed; top: clamp(32px, 5vh, 56px); left: 20px; z-index: 20;
   width: 40px; height: 40px; padding: 0;
   display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 50%;
