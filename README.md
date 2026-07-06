@@ -20,7 +20,8 @@ No install or build step.
 All copy, tags, links and images live in **`js/data.js`** — the only file you
 need to touch to change content:
 
-- `bio` — name, role, photo, `credentials` (plain-text pills), and bio text.
+- `bio` — name, role, photo, `credentials` (plain-text pills), `actions` (top-right
+  CV / TG buttons: `{ label, href, variant }`), and bio text.
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)
   - `title` — wrap the highlighted fragment in `**double asterisks**`
@@ -34,10 +35,9 @@ need to touch to change content:
 
 ## Fonts
 
-- Bio name / role: system stack — real **SF Pro** on Apple devices, graceful
-  sans fallback elsewhere (all carry Cyrillic).
-- Titles (500), tags/pills (400), client names (300 italic): **Rubik**
-  (self-hosted, latin + cyrillic per weight).
+- Bio name / role, titles, CV/TG buttons (500), tags/pills (400), client names
+  (300 italic): **Rubik** (self-hosted, latin + cyrillic per weight). The system
+  stack is only the fallback.
 - Bio paragraph + case summaries: **JetBrains Mono** (self-hosted, latin +
   cyrillic) — has full Cyrillic for the Russian body copy.
 

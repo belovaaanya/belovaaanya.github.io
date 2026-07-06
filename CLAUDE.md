@@ -32,7 +32,8 @@ to touch to change content.** `main.js` renders everything from the `bio` object
 array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double asterisks**`),
 `accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
 box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
-`bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX").
+`bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX") and `actions[]` (the
+top-right CV / TG buttons: `{ label, href, variant: "ghost" | "tg" }`).
 
 ## Architecture (the parts that span multiple files)
 
@@ -69,11 +70,10 @@ accents are used as-is on dark.
 
 ## Fonts (and the Cyrillic rule)
 
-- **Bio name / role (headline):** system stack (`--font-sans`) — real SF Pro on Apple devices,
-  sans fallback elsewhere.
 - **`Rubik`** (`--font-rubik`, self-hosted, split latin + cyrillic per weight with
-  `unicode-range`): **500** for case titles, **400** for tags/pills, **300 italic** for client
-  names.
+  `unicode-range`): **500** for the bio name/role, case titles, and the CV/TG action buttons;
+  **400** for tags/pills; **300 italic** for client names. The system stack (`--font-sans`) is
+  now only the fallback inside `--font-rubik` (SF Pro is no longer used directly).
 - **`JetBrains Mono`** (`--font-mono`, self-hosted, latin + cyrillic): the **bio paragraph** and
   **case summaries**. It has full Cyrillic, so it's safe for the Russian body copy — this replaced
   **Intel One Mono**, which has **no Cyrillic glyphs** and could not render the Russian text. The

@@ -117,7 +117,7 @@ a { color: inherit; }
 
 /* ── theme toggle ────────────────────────────────────────────────────── */
 #theme-toggle {
-  position: fixed; top: 20px; right: 20px; z-index: 20;
+  position: fixed; top: 20px; left: 20px; z-index: 20;
   width: 40px; height: 40px; padding: 0;
   display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 50%;
@@ -133,10 +133,10 @@ a { color: inherit; }
 #app {
   max-width: 1350px;
   margin: 0 auto;
-  padding: clamp(48px, 8vh, 96px) var(--gutter) clamp(80px, 12vh, 160px);
+  padding: clamp(32px, 5vh, 56px) var(--gutter) clamp(80px, 12vh, 160px);
   display: flex;
   flex-direction: column;
-  gap: clamp(64px, 9vw, 132px);
+  gap: clamp(48px, 5.3vw, 72px);
 }
 
 /* ── reveal-on-scroll ────────────────────────────────────────────────── */
@@ -155,16 +155,42 @@ html.js .reveal {
   display: inline-flex; align-items: center; justify-content: center;
   height: 32px; padding: 4px 16px;
   background: var(--tag-bg); color: var(--muted); border-radius: var(--radius);
-  font-family: var(--font-rubik); font-weight: 400; font-size: 14px; letter-spacing: 0.05em;
+  font-family: var(--font-rubik); font-weight: 400; font-size: 16px; letter-spacing: 0.05em;
   white-space: nowrap; text-decoration: none;
 }
 
+/* ── action buttons (bio: CV / TG) ───────────────────────────────────── */
+.action {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 40px; padding: 4px 20px; border-radius: 20px;
+  font-family: var(--font-rubik); font-weight: 500; font-size: 14px; letter-spacing: 0.05em;
+  text-decoration: none; white-space: nowrap;
+  transition: background 0.2s, filter 0.2s, transform 0.2s;
+}
+.action:hover { transform: translateY(-1px); }
+.action:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.action--ghost {
+  color: var(--fg);
+  background: linear-gradient(113deg,
+    color-mix(in srgb, var(--fg) 12%, transparent) 6%,
+    color-mix(in srgb, var(--muted) 12%, transparent) 58%);
+}
+.action--ghost:hover {
+  background: linear-gradient(113deg,
+    color-mix(in srgb, var(--fg) 20%, transparent) 6%,
+    color-mix(in srgb, var(--muted) 20%, transparent) 58%);
+}
+.action--tg { color: #fff; background: #ee5219; }
+.action--tg:hover { filter: brightness(1.08); }
+
 /* ── bio ─────────────────────────────────────────────────────────────── */
-.bio { width: 100%; max-width: 948px; display: flex; flex-direction: column; gap: 8px; }
+.bio { width: 100%; display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px); }
+.bio__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; width: 100%; }
+.bio__inner { width: 100%; max-width: 998px; display: flex; flex-direction: column; gap: 8px; }
 .bio__headline { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
 .bio__name, .bio__role {
-  font-family: var(--font-sans); font-weight: 500;
-  font-size: clamp(24px, 3.4vw, 32px); line-height: 1.1; letter-spacing: -0.01em;
+  font-family: var(--font-rubik); font-weight: 500;
+  font-size: clamp(28px, 4.2vw, 40px); line-height: 1.1; letter-spacing: -0.01em;
 }
 .bio__photo {
   width: clamp(76px, 8vw, 110px); aspect-ratio: 1; border-radius: 50%;
@@ -176,8 +202,8 @@ html.js .reveal {
 }
 .bio__pills { display: flex; flex-wrap: wrap; gap: 4px; }
 .bio__text {
-  margin: 0; font-family: var(--font-mono); font-size: 14px; line-height: 1.5;
-  letter-spacing: 0.14px; color: var(--fg);
+  margin: 0; font-family: var(--font-mono); font-size: 16px; line-height: 1.5;
+  letter-spacing: 0.16px; color: var(--fg);
 }
 
 /* ── case block ──────────────────────────────────────────────────────── */
@@ -186,7 +212,7 @@ html.js .reveal {
 .case__title {
   margin: 0; max-width: 970px;
   font-family: var(--font-rubik); font-weight: 500;
-  font-size: clamp(24px, 3.4vw, 32px); line-height: 1.1; letter-spacing: -0.01em;
+  font-size: clamp(28px, 4.2vw, 40px); line-height: 1.1; letter-spacing: -0.01em;
 }
 .case__title .accent { color: var(--accent-ink, var(--accent, var(--fg))); }
 .case__client {
@@ -199,14 +225,14 @@ html.js .reveal {
 .case__summary {
   flex: 0 0 clamp(240px, 24%, 308px);
   display: flex; flex-direction: column;
-  font-family: var(--font-mono); font-size: 14px; line-height: 1.5;
-  letter-spacing: 0.14px; color: var(--fg);
+  font-family: var(--font-mono); font-size: 16px; line-height: 1.5;
+  letter-spacing: 0.16px; color: var(--fg);
 }
 .case__summary p { margin: 0; }
 .case__summary p + p { margin-top: 1em; }
 
 /* ── showcase (image box, scaled from design px) ─────────────────────── */
-.showcase-wrap { position: relative; width: 100%; }
+.showcase-wrap { position: relative; width: 100%; overflow: hidden; }
 .showcase {
   position: absolute; top: 0; left: 0;
   transform-origin: top left; overflow: hidden;
@@ -219,7 +245,7 @@ html.js .reveal {
   .case__row { flex-direction: column; align-items: stretch; gap: 20px; }
   .case__media { width: 100%; }
   .case__summary { flex: none; width: 100%; max-width: 520px; }
-  .bio { max-width: 100%; }
+  .bio__inner { max-width: 100%; }
   .bio__headline { flex-wrap: wrap; }
   .bio__meta { margin-left: 0; width: 100%; }
 }

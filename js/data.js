@@ -8,6 +8,7 @@
 //  summary:     array of paragraph strings shown beside the image (one <p> each).
 //
 //  bio.credentials: plain-text pills (e.g. "6 лет в UX").
+//  bio.actions:     top-right buttons { label, href, variant: "ghost" | "tg" }.
 //
 //  img.layers use raw Figma design-pixel coordinates inside the img box
 //  (img.w × img.h). Each layer:
@@ -22,6 +23,10 @@ export const bio = {
   role: "Продуктовый дизайнер",
   photo: "assets/bio/photo.png",
   credentials: ["6 лет в UX", "4 года в Enterprise Fintech"],
+  actions: [
+    { label: "Смотреть CV", href: "#", variant: "ghost" },
+    { label: "Написать в tg", href: "#", variant: "tg" },
+  ],
   text:
     "Продуктовый дизайнер с 6-летним опытом в UX. Проектирую сложные B2B-продукты " +
     "на стыке дизайна, исследований и аналитики данных. Помогаю превращать " +

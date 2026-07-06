@@ -1,10 +1,12 @@
 # Asset Manifest
 
 Source: Figma frame `173:866` ("Desktop: wireframe"), file `Lpw0GfkLHeeRED9sUallH8`.
-Page background: `#111`. Titles: Rubik Medium 500 (accent fragment tinted per case). Tags/pills:
-Rubik Regular 400, 14px, `#7a7a7a`. Client names: Rubik 300 italic. Body (bio paragraph + case
-summaries): JetBrains Mono 400, 14px, white. Content model: one `summary[]` per case (array of
-paragraphs) beside the image. The v3 wireframe did **not** change showcase geometry — the
+Page background: `#111`. Bio name/role + case titles: Rubik Medium 500, 40px (title accent
+fragment tinted per case). Tags/pills: Rubik Regular 400, 16px, `#7a7a7a`. Client names: Rubik
+300 italic, 20px. Body (bio paragraph + case summaries): JetBrains Mono 400, 16px, white.
+Top-right action buttons (h40, rounded-20, Rubik Medium 14): "Смотреть CV" (translucent ghost),
+"Написать в tg" (`#ee5219`). Content model: one `summary[]` per case (array of paragraphs)
+beside the image. The v3 wireframe did **not** change showcase geometry — the
 authoritative per-layer coordinates live in `js/data.js`. The table below is a historical
 reference from an earlier revision (older case ids/node ids) and is not 1:1 with current `data.js`.
 
@@ -22,7 +24,7 @@ order (first = back). `crop` = inner `<img>` position as `[left%, top%, width%, 
 | portraits | 164:684 | 832×545 | — | — | p259 · [285.17,-27,262.9,361.07] ; p254 · [536.81,0.85,304.24,304.24] ; p255 · [556.41,294.77,284.64,271.23] crop[0,0,100,104.94] ; p256 · [287.23,305.08,269.17,260.92] crop[-4.98,-3.97,104.98,103.99] ; p257 · [0.53,305.08,286.7,260.92] crop[0,-2.37,100,109.88] ; p258 · [-17,0.85,304.24,304.24] |
 | crypto | 164:669 | 830×598 | — | — | shot.png · [0,0,830,598] · r0 · [0,10.84,100,75.97] |
 
-Bio (node 173:867): name "Анна Белова" (SF Pro Medium 32) + inline circular photo (110px, rotate
+Bio (header node 206:473 wraps a top action bar + bio 173:867): top-right buttons "Смотреть CV" +
+"Написать в tg"; name "Анна Белова" (Rubik Medium 40) + inline circular photo (110px, rotate
 -0.36deg) + role "Продуктовый дизайнер"; credential pills "6 лет в UX", "4 года в Enterprise
-Fintech" (Rubik 14, h32); bio paragraph (JetBrains Mono 14, white).
-Photo: assets/bio/photo.png.
+Fintech" (Rubik 16, h32); bio paragraph (JetBrains Mono 16, white). Photo: assets/bio/photo.png.

@@ -70,6 +70,18 @@ function renderBio(b) {
   const s = document.createElement("section");
   s.className = "block bio";
 
+  // top-right action bar: CV / TG buttons
+  const actions = document.createElement("div");
+  actions.className = "bio__actions";
+  b.actions.forEach((a) => {
+    const el = document.createElement("a");
+    el.href = a.href;
+    el.className = `action action--${a.variant}`;
+    el.textContent = a.label;
+    if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
+    actions.appendChild(el);
+  });
+
   const headline = document.createElement("div");
   headline.className = "bio__headline";
   headline.innerHTML =
@@ -89,7 +101,13 @@ function renderBio(b) {
   text.textContent = b.text;
 
   meta.append(pills, text);
-  s.append(reveal(headline, 0), reveal(meta, 1));
+
+  // headline + meta share a narrower column; the action bar spans full width
+  const inner = document.createElement("div");
+  inner.className = "bio__inner";
+  inner.append(reveal(headline, 1), reveal(meta, 2));
+
+  s.append(reveal(actions, 0), inner);
   return s;
 }
 
