@@ -153,13 +153,18 @@ html.js .reveal {
 /* ── shared pills ────────────────────────────────────────────────────── */
 .pill {
   display: inline-flex; align-items: center; justify-content: center;
+  height: 32px; padding: 4px 16px;
   background: var(--tag-bg); color: var(--muted); border-radius: var(--radius);
+  font-family: var(--font-rubik); font-weight: 400; font-size: 14px; letter-spacing: 0.05em;
   white-space: nowrap; text-decoration: none;
 }
+.pill--link { transition: color 0.2s, background 0.2s; }
+.pill--link:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 10%, transparent); }
+.pill--link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
 /* ── bio ─────────────────────────────────────────────────────────────── */
-.bio { width: 100%; max-width: 914px; display: flex; flex-direction: column; gap: 8px; }
-.bio__headline { display: flex; align-items: center; gap: 10px; }
+.bio { width: 100%; max-width: 948px; display: flex; flex-direction: column; gap: 8px; }
+.bio__headline { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
 .bio__name, .bio__role {
   font-family: var(--font-sans); font-weight: 500;
   font-size: clamp(24px, 3.4vw, 32px); line-height: 1.1; letter-spacing: -0.01em;
@@ -169,43 +174,39 @@ html.js .reveal {
   object-fit: cover; transform: rotate(-0.36deg); flex: none;
 }
 .bio__meta {
-  margin-top: 12px; margin-left: auto; width: min(369px, 100%);
+  margin-top: 12px; margin-left: auto; width: min(448px, 100%);
   display: flex; flex-direction: column; gap: 16px;
 }
-.bio__tags { display: flex; gap: 4px; }
-.bio__tags .pill { height: 24px; padding: 4px 16px; font-family: var(--font-mono); font-weight: 500; font-size: 12px; }
-.bio__text { margin: 0; font-family: var(--font-mono); font-size: 10px; line-height: 1.4; }
+.bio__pills { display: flex; flex-wrap: wrap; gap: 4px; }
+.bio__text {
+  margin: 0; font-family: var(--font-mono); font-size: 14px; line-height: 1.5;
+  letter-spacing: 0.14px; color: var(--fg);
+}
 
 /* ── case block ──────────────────────────────────────────────────────── */
 .case { display: flex; flex-direction: column; gap: 20px; }
 .case__tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.case__tags .pill {
-  height: 32px; padding: 4px 16px;
-  font-family: var(--font-sans); font-weight: 500; font-size: 12px; letter-spacing: 0.05em;
-}
 .case__title {
   margin: 0; max-width: 970px;
-  font-family: var(--font-sans); font-weight: 500;
+  font-family: var(--font-rubik); font-weight: 500;
   font-size: clamp(24px, 3.4vw, 32px); line-height: 1.1; letter-spacing: -0.01em;
 }
 .case__title .accent { color: var(--accent-ink, var(--accent, var(--fg))); }
 .case__client {
-  margin: 0; font-family: var(--font-serif); font-weight: 300; font-style: italic;
-  font-size: clamp(15px, 1.8vw, 18px); line-height: 1.1; color: var(--fg);
+  margin: 0; font-family: var(--font-rubik); font-weight: 300; font-style: italic;
+  font-size: clamp(16px, 2vw, 20px); line-height: 1.1; color: var(--fg);
 }
 
-.case__row { display: flex; align-items: center; gap: var(--gutter); }
+.case__row { display: flex; align-items: center; gap: clamp(20px, 2vw, 28px); }
 .case__media { flex: 1 1 0; min-width: 0; }
-.case__body {
-  flex: 0 0 clamp(210px, 24%, 300px);
+.case__summary {
+  flex: 0 0 clamp(240px, 24%, 308px);
   display: flex; flex-direction: column;
-  font-family: var(--font-sans); font-size: 12px; line-height: 1.45; letter-spacing: 0.01em;
+  font-family: var(--font-mono); font-size: 14px; line-height: 1.5;
+  letter-spacing: 0.14px; color: var(--fg);
 }
-.case__body p { margin: 0; color: var(--body); }
-.case__body p + p { margin-top: 1em; }
-.case__body p.h { color: var(--fg); font-weight: 700; margin-top: 1.4em; }
-.case__body p.h:first-child { margin-top: 0; }
-.case__body p.h + p { margin-top: 0.15em; }
+.case__summary p { margin: 0; }
+.case__summary p + p { margin-top: 1em; }
 
 /* ── showcase (image box, scaled from design px) ─────────────────────── */
 .showcase-wrap { position: relative; width: 100%; }
@@ -220,7 +221,7 @@ html.js .reveal {
 @media (max-width: 860px) {
   .case__row { flex-direction: column; align-items: stretch; gap: 20px; }
   .case__media { width: 100%; }
-  .case__body { flex: none; width: 100%; max-width: 520px; }
+  .case__summary { flex: none; width: 100%; max-width: 520px; }
   .bio { max-width: 100%; }
   .bio__headline { flex-wrap: wrap; }
   .bio__meta { margin-left: 0; width: 100%; }
