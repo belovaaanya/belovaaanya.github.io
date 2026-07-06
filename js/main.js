@@ -83,11 +83,6 @@ function renderBio(b) {
   const pills = document.createElement("div");
   pills.className = "bio__pills";
   b.credentials.forEach((c) => pills.appendChild(pill(c)));
-  b.links.forEach((l) => {
-    const el = pill(l.label, l.href);
-    el.classList.add("pill--link");
-    pills.appendChild(el);
-  });
 
   const text = document.createElement("p");
   text.className = "bio__text";

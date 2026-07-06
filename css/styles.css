@@ -158,9 +158,6 @@ html.js .reveal {
   font-family: var(--font-rubik); font-weight: 400; font-size: 14px; letter-spacing: 0.05em;
   white-space: nowrap; text-decoration: none;
 }
-.pill--link { transition: color 0.2s, background 0.2s; }
-.pill--link:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 10%, transparent); }
-.pill--link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
 /* ── bio ─────────────────────────────────────────────────────────────── */
 .bio { width: 100%; max-width: 948px; display: flex; flex-direction: column; gap: 8px; }

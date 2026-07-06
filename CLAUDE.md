@@ -32,7 +32,7 @@ to touch to change content.** `main.js` renders everything from the `bio` object
 array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double asterisks**`),
 `accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
 box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
-`bio` object has `credentials[]` (plain-text pills) and `links[]` (CV / TG, rendered as link-pills).
+`bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX").
 
 ## Architecture (the parts that span multiple files)
 

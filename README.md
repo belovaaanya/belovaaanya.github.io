@@ -20,8 +20,7 @@ No install or build step.
 All copy, tags, links and images live in **`js/data.js`** — the only file you
 need to touch to change content:
 
-- `bio` — name, role, photo, `credentials` (plain-text pills), `links` (CV / TG),
-  and bio text.
+- `bio` — name, role, photo, `credentials` (plain-text pills), and bio text.
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)
   - `title` — wrap the highlighted fragment in `**double asterisks**`

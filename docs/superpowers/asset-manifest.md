@@ -24,5 +24,5 @@ order (first = back). `crop` = inner `<img>` position as `[left%, top%, width%, 
 
 Bio (node 173:867): name "Анна Белова" (SF Pro Medium 32) + inline circular photo (110px, rotate
 -0.36deg) + role "Продуктовый дизайнер"; credential pills "6 лет в UX", "4 года в Enterprise
-Fintech" (Rubik 14, h32) + CV/TG link-pills; bio paragraph (JetBrains Mono 14, white).
+Fintech" (Rubik 14, h32); bio paragraph (JetBrains Mono 14, white).
 Photo: assets/bio/photo.png.
