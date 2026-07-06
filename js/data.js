@@ -1,18 +1,24 @@
 // ─────────────────────────────────────────────────────────────────────────
 //  Portfolio content — EDIT HERE to swap copy, tags, links, images.
 //
-//  Showcase layers use raw Figma design-pixel coordinates. Each showcase is
-//  rendered at its `dw × dh` design size and scaled to fit its column, so:
-//    box:   [left, top, width, height]  in design px (origin top-left of showcase)
-//    radius: corner radius in design px
-//    crop:  inner <img> position [left%, top%, width%, height%], or null => object-fit:cover
-//    depth: parallax weight 0..1 (higher = moves more / reads as closer)
+//  title:  plain string; wrap the accent fragment in **double asterisks**.
+//  accent: color of that highlighted fragment.
+//  client: small italic line under the title (Rubik); null to omit.
+//  tags:   array of short labels; [] to omit the tag row.
+//  body:   array of blocks. { h, t } renders a bold heading + muted body;
+//          { t } alone renders a muted paragraph.
+//
+//  img.layers use raw Figma design-pixel coordinates inside the img box
+//  (img.w × img.h). Each layer:
+//    box:    [left, top, width, height]  (design px, origin = box top-left)
+//    radius: corner radius (design px)
+//    crop:   inner <img> position [left%, top%, width%, height%], or
+//            null => object-fit:cover filling the layer box.
 // ─────────────────────────────────────────────────────────────────────────
 
 export const bio = {
-  navLabel: "Bio",
-  name: "Anna Belova",
-  role: "Product Designer",
+  name: "Анна Белова",
+  role: "Продуктовый дизайнер",
   photo: "assets/bio/photo.png",
   tags: [
     { label: "CV", href: "#" },
@@ -25,106 +31,135 @@ export const bio = {
     "and strategic business solutions",
 };
 
-// Placeholder copy is intentional and shared across cases (matches the wireframe).
-// Swap title / description / tags / link per case here.
-const PLACEHOLDER_DESC = [
-  "Designed key screens for a clothing app prioritizing fast search and purchase " +
-    "flows. Implemented photo and barcode search features based on competitive " +
-    "benchmarking (Zara, Farfetch)",
-  "Created a highly scannable, user-centered shopping experience with optimized product cards",
-];
-
 export const cases = [
   {
-    id: "fast-checkout",
-    navLabel: "Fast Checkout",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 620, bg: null, radius: 0,
-    layers: [
-      { src: "assets/fast-checkout/shot.png", box: [0, 0, 832, 620], radius: 47, crop: [-19.54, -0.04, 135.47, 100.08], depth: 0.5 },
+    id: "alfa",
+    tags: ["Enterprise B2B", "Data Visualization"],
+    title: "Сократила путь от клиентской обратной связи до **продуктового решения**",
+    accent: "#f1015a",
+    client: "Альфа-Банк",
+    img: {
+      w: 970, h: 556, bg: "#050506", radius: 32,
+      layers: [
+        { src: "assets/alfa/dashboard.png", box: [38, 30, 894, 497], radius: 0, crop: null },
+      ],
+    },
+    body: [
+      { h: "Контекст", t: "100+ продуктовых команд работали с тысячами обращений клиентов, но для подготовки продуктовых выводов UX-аналитикам приходилось вручную собирать и анализировать данные" },
+      { h: "Что сделала", t: "Провела CustDev с продуктовыми командами, изучила частотные запросы к UX-аналитикам и выявила ключевые сценарии использования данных. На основе исследований спроектировала централизованный VoC Dashboard с метриками, инсайтами и возможностью быстро переходить от общей картины к конкретным обращениям" },
+      { h: "Результат", t: "Сократила объём ручной аналитики, объединила клиентскую обратную связь в единый инструмент и упростила принятие продуктовых решений" },
     ],
   },
   {
-    id: "health",
-    navLabel: "Health",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 601, bg: null, radius: 0,
-    layers: [
-      { src: "assets/health/shot.png", box: [-106, 0, 638, 539], radius: 40, crop: [0, -0.04, 154.56, 100.07], depth: 0.4 },
-      { src: "assets/health/shot.png", box: [545, 0, 254, 539], radius: 20, crop: [-287.67, -5.52, 428.08, 110.72], depth: 0.7 },
+    id: "iontrack",
+    tags: ["Health-Tech", "0 to 1", "Design System"],
+    title: "Превратила **медицинскую технологию** в цифровой продукт",
+    accent: "#4963fa",
+    client: "IonTrack",
+    img: {
+      w: 970, h: 539, bg: null, radius: 0,
+      layers: [
+        { src: "assets/iontrack/main.png", box: [0, -1, 691, 532], radius: 40, crop: [-0.3, -0.04, 150.09, 106.66] },
+        { src: "assets/iontrack/main.png", box: [714, 7, 246, 524], radius: 34, crop: [-290.82, -5.53, 431.56, 110.93] },
+        { src: "assets/iontrack/phone.png", box: [704, 0, 265.545, 540.862], radius: 0, crop: null },
+      ],
+    },
+    body: [
+      { h: "Контекст", t: "У стартапа была запатентованная технология диагностики, но отсутствовал цифровой продукт, через который пользователи могли бы взаимодействовать с устройством и получать результаты исследований" },
+      { h: "Что сделала", t: "Спроектировала мобильное приложение с нуля, разработала дизайн-систему из 30+ компонентов и провела две итерации юзабилити-тестирования в Maze до начала разработки" },
+      { h: "Результат", t: "Помогла подтвердить инвестиционную привлекательность продукта: проект привлёк 4 млн ₽, а также заключил партнёрство с YEDI University" },
     ],
   },
   {
-    id: "dashboard",
-    navLabel: "Dashboard",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 560, bg: "#ff6b48", radius: 32,
-    layers: [
-      { src: "assets/dashboard/shot.png", box: [0, 55, 823, 450], radius: 0, crop: null, depth: 0.5 },
+    id: "corgi",
+    tags: ["InsurTech", "B2B SaaS", "Redesign"],
+    title: "Разделила сложные страховые процессы **по ролям**",
+    accent: "#ff6b48",
+    client: "Corgi Insurance Services",
+    img: {
+      w: 970, h: 539, bg: "#ff6b48", radius: 32,
+      layers: [
+        { src: "assets/corgi/main.png", box: [0, 8, 955, 523], radius: 0, crop: null },
+      ],
+    },
+    body: [
+      { h: "Контекст", t: "Интерфейс одновременно обслуживал брокеров и андеррайтеров, из-за чего был перегружен для новых пользователей и замедлял работу опытных специалистов. Дополнительно бизнесу не хватало современного визуального образа продукта" },
+      { h: "Что сделала", t: "Переработала информационную архитектуру на основе пользовательских ролей. Добавила Smart Header со статусом заявки по воронке, вынесла ключевую информацию в ленту заявок без дополнительных переходов и обновила визуальный стиль платформы" },
+      { h: "Результат", t: "Снизила когнитивную нагрузку, сократила количество лишних действий в основных сценариях и сделала интерфейс ближе к ожиданиям пользователей и бизнеса" },
+    ],
+  },
+  {
+    id: "drinkit",
+    tags: ["FoodTech", "UX Research", "UI Concept"],
+    title: "**Снизила барьер входа** без потери данных для персонализации",
+    accent: "#3f5bff",
+    client: "Drinkit",
+    img: {
+      w: 970, h: 539, bg: "#ff6b48", radius: 32,
+      layers: [
+        { src: "assets/drinkit/main.png", box: [0, 0, 970, 656], radius: 0, crop: [0, -4.14, 100, 109.2] },
+      ],
+    },
+    body: [
+      { h: "Контекст", t: "Новым пользователям было сложно выбрать первый напиток, а бизнесу требовалось получать больше данных для персонализации рекомендаций" },
+      { h: "Что сделала", t: "Изучила более 10 конкурентов, провела UX-тестирование прототипов и спроектировала онбординг по модели self-select, позволяющей естественно собирать предпочтения пользователя ещё до первого заказа" },
+      { h: "Результат", t: "Увеличила конверсию в добавление напитка в корзину на 3%, одновременно упростив первый опыт использования приложения" },
     ],
   },
   {
     id: "streaming",
-    navLabel: "Streaming",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 662, bg: null, radius: 32,
-    layers: [
-      { src: "assets/streaming/base.png", box: [0, 0, 823, 450], radius: 0, crop: null, depth: 0.3 },
-      { src: "assets/streaming/mockups.png", box: [-179, 0, 1195, 654], radius: 0, crop: null, depth: 0.6 },
+    tags: ["UI Concept", "Entertainment"],
+    title: "Сократила путь до просмотра",
+    accent: null,
+    client: null,
+    img: {
+      w: 970, h: 539, bg: null, radius: 32,
+      layers: [
+        { src: "assets/streaming/main.png", box: [-13, -3, 997, 546], radius: 0, crop: null },
+      ],
+    },
+    body: [
+      { t: "Разработала концепцию стримингового сервиса, в которой пользователь быстрее переходит от выбора фильма к просмотру" },
+      { t: "Опираясь на лучшие практики Netflix и HBO Max, выстроила навигацию вокруг пользовательских сценариев и усилила главный экран как основную точку принятия решения" },
     ],
   },
   {
-    id: "coffee",
-    navLabel: "Coffee",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
+    id: "ecommerce",
     tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 545, bg: null, radius: 0,
-    layers: [
-      { src: "assets/coffee/main.png", box: [-119, 0, 642, 539], radius: 0, crop: [0, -5.31, 125.7, 110.61], depth: 0.4 },
-      { src: "assets/coffee/side.png", box: [545, 0, 254, 539], radius: 20, crop: [-287.67, -5.52, 428.08, 110.72], depth: 0.7 },
+    title: "Сократила путь от поиска до **покупки**",
+    accent: "#80ff82",
+    client: null,
+    img: {
+      w: 970, h: 539, bg: "#171719", radius: 32,
+      layers: [
+        { src: "assets/ecommerce/main.png", box: [122, -2, 726, 541], radius: 32, crop: [-19.54, -0.04, 135.47, 100.08] },
+      ],
+    },
+    body: [
+      { t: "Исследовала, как визуальный поиск и поиск по штрихкоду могут сократить путь пользователя от поиска товара до покупки" },
+      { t: "Спроектировала мобильный сценарий с быстрым поиском, удобными карточками товаров и ускоренным оформлением заказа, используя лучшие практики ведущих e-commerce продуктов" },
     ],
   },
   {
-    id: "portraits",
-    navLabel: "Portraits",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 832, dh: 545, bg: null, radius: 0,
-    layers: [
-      { src: "assets/portraits/p259.png", box: [285.17, -27, 262.9, 361.07], radius: 0, crop: null, depth: 0.45 },
-      { src: "assets/portraits/p254.png", box: [536.81, 0.85, 304.24, 304.24], radius: 0, crop: null, depth: 0.55 },
-      { src: "assets/portraits/p255.png", box: [556.41, 294.77, 284.64, 271.23], radius: 0, crop: [0, 0, 100, 104.94], depth: 0.6 },
-      { src: "assets/portraits/p256.png", box: [287.23, 305.08, 269.17, 260.92], radius: 0, crop: [-4.98, -3.97, 104.98, 103.99], depth: 0.5 },
-      { src: "assets/portraits/p257.png", box: [0.53, 305.08, 286.7, 260.92], radius: 0, crop: [0, -2.37, 100, 109.88], depth: 0.5 },
-      { src: "assets/portraits/p258.png", box: [-17, 0.85, 304.24, 304.24], radius: 0, crop: null, depth: 0.65 },
-    ],
-  },
-  {
-    id: "crypto",
-    navLabel: "Crypto",
-    title: "E-commerce Fast Checkout",
-    description: PLACEHOLDER_DESC,
-    tags: ["UI Concept", "Retail"],
-    link: "#",
-    dw: 830, dh: 598, bg: null, radius: 0,
-    layers: [
-      { src: "assets/crypto/shot.png", box: [0, 0, 830, 598], radius: 0, crop: [0, 10.84, 100, 75.97], depth: 0.5 },
+    id: "illustrations",
+    tags: [],
+    title: "Некоммерческие иллюстрации",
+    accent: null,
+    client: null,
+    img: {
+      w: 970, h: 657, bg: null, radius: 0,
+      layers: [
+        { src: "assets/illustrations/p259.png", box: [342.33, 0, 285.343, 329.826], radius: 32, crop: [-1.66, 0, 103.29, 118.77] },
+        { src: "assets/illustrations/p254.png", box: [639.92, 0, 330.081, 330.081], radius: 32, crop: null },
+        { src: "assets/illustrations/p255.png", box: [641, 342, 329, 307], radius: 32, crop: [0, 0, 100, 107.34] },
+        { src: "assets/illustrations/p256.png", box: [343, 342, 286, 307], radius: 32, crop: [-5.43, -3.82, 115.99, 103.68] },
+        { src: "assets/illustrations/p257.png", box: [0, 342, 331, 307], radius: 32, crop: [0, -2.15, 100.05, 107.87] },
+        { src: "assets/illustrations/p258.png", box: [0, 0, 330.081, 330.081], radius: 32, crop: null },
+      ],
+    },
+    body: [
+      { t: "Помимо продуктового дизайна создаю иллюстрации и стикерпаки, в которых исследую атмосферу, композицию и визуальное повествование" },
+      { t: "Мои работы выпускались совместно с No Kids Stickers (NKS) — брендом с аудиторией более 400 000 подписчиков" },
     ],
   },
 ];
