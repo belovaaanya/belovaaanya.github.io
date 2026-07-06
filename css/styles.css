@@ -194,12 +194,12 @@ html.js .reveal {
   .action::before {
     content: ""; position: absolute; inset: 0; border-radius: inherit;
     pointer-events: none; z-index: -1; opacity: 0; transition: opacity 0.2s;
-    background: radial-gradient(circle 90px at var(--mx, 50%) var(--my, 50%),
-      var(--action-glow), transparent 72%);
+    background: radial-gradient(circle 110px at var(--mx, 50%) var(--my, 50%),
+      var(--action-glow), transparent 80%);
   }
   .action:hover::before { opacity: 1; }
-  .action--ghost { --action-glow: color-mix(in srgb, var(--fg) 16%, transparent); }
-  .action--tg { --action-glow: rgba(255, 255, 255, 0.28); }
+  .action--ghost { --action-glow: color-mix(in srgb, var(--fg) 8%, transparent); }
+  .action--tg { --action-glow: rgba(255, 255, 255, 0.13); }
 }
 
 /* ── bio ─────────────────────────────────────────────────────────────── */
