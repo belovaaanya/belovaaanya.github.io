@@ -7,8 +7,10 @@
 //  tags:        array of short labels; [] to omit the tag row.
 //  summary:     array of paragraph strings shown beside the image (one <p> each).
 //
-//  bio.credentials: plain-text pills (e.g. "6 лет в UX").
-//  bio.actions:     top-right buttons { label, href, variant: "ghost" | "tg" }.
+//  bio.credentials:  plain-text pills (e.g. "6 лет в UX").
+//  bio.actions:      contact buttons { label, href, variant: "ghost" | "tg", inHeader? }.
+//                    inHeader:true also shows the button in the top-right header row;
+//                    the footer shows all of them under bio.contactTitle.
 //
 //  img.layers use raw Figma design-pixel coordinates inside the img box
 //  (img.w × img.h). Each layer:
@@ -23,9 +25,11 @@ export const bio = {
   role: "Продуктовый дизайнер",
   photo: "assets/bio/photo.png",
   credentials: ["6 лет в UX", "4 года в Enterprise Fintech"],
+  contactTitle: "Свяжитесь со мной",
   actions: [
-    { label: "Смотреть CV", href: "#", variant: "ghost" }, // TODO: real CV link
-    { label: "Написать в tg", href: "https://t.me/belovannaaa", variant: "tg" },
+    { label: "Смотреть CV", href: "https://drive.google.com/file/d/1Leu2IMuaoQ2Q-Z0E0Wx5vSA7uhreS-Vx/view?usp=sharing", variant: "ghost", inHeader: true },
+    { label: "Написать по почте", href: "#", variant: "ghost" }, // TODO: mailto: real email
+    { label: "Написать в tg", href: "https://t.me/belovannaaa", variant: "tg", inHeader: true },
   ],
   text:
     "Продуктовый дизайнер с 6-летним опытом в UX. Проектирую сложные B2B-продукты " +

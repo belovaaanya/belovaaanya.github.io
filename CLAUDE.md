@@ -33,16 +33,18 @@ array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double a
 `accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
 box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
 `bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX") and `actions[]` (the
-CV / TG buttons: `{ label, href, variant: "ghost" | "tg" }`) — rendered both top-right in the
-header and in the footer.
+contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `contactTitle`. The
+header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.
 
 ## Architecture (the parts that span multiple files)
 
 **Data-driven render.** `js/main.js` builds the whole DOM from `js/data.js` at load: `renderBio`,
 `renderCase`, and `renderFooter` create `<section/footer class="block …">` nodes and append them
-to `#app`. The CV/TG buttons come from `bio.actions` via the shared `buildActions()` helper — the
-same data drives both the bio header (`.bio__actions`) and the footer (`.footer__actions`). There
-is no templating engine and no HTML for content in `index.html` (just `#app` + the theme toggle).
+to `#app`. `bio.actions` are the CV / email / TG contact buttons (`buildActions()` → `.action`,
+built with the shared `makeLink()` helper): the top-right header row shows only the ones flagged
+`inHeader`, and `renderFooter` shows all of them as a button row under the `bio.contactTitle`
+heading. There is no templating engine and no HTML for content in `index.html` (just `#app` + the
+theme toggle).
 
 **Showcase image system (non-obvious).** Each case image is a composition of layers positioned in
 **raw Figma design pixels**. `data.js` stores `img.w/h` (the design box size) and `layers[]` with

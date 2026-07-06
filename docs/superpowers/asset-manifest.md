@@ -28,3 +28,7 @@ Bio (header node 206:473 wraps a top action bar + bio 173:867): top-right button
 "Написать в tg"; name "Анна Белова" (Rubik Medium 40) + inline circular photo (110px, rotate
 -0.36deg) + role "Продуктовый дизайнер"; credential pills "6 лет в UX", "4 года в Enterprise
 Fintech" (Rubik 16, h32); bio paragraph (JetBrains Mono 16, white). Photo: assets/bio/photo.png.
+
+Footer (node 207:474): centered heading "Свяжитесь со мной" (Rubik Medium 40) + a centered row of
+three h40 rounded-20 buttons — "Смотреть CV" (ghost) · "Написать по почте" (ghost) · "Написать в
+tg" (`#ee5219`). Header shows only CV + tg; the footer adds the email button. No divider line.

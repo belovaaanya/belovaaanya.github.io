@@ -29,18 +29,21 @@ function reveal(el, i) {
   return el;
 }
 
-// CV / TG action buttons — shared by the bio header and the footer.
+// Anchor from an action ({label, href}); opens real (non-"#") links in a new tab.
+function makeLink(a, className) {
+  const el = document.createElement("a");
+  el.href = a.href;
+  el.className = className;
+  el.textContent = a.label;
+  if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
+  return el;
+}
+
+// CV / TG as styled buttons (bio header).
 function buildActions(actions, contextClass) {
   const wrap = document.createElement("div");
   wrap.className = contextClass ? `actions ${contextClass}` : "actions";
-  actions.forEach((a) => {
-    const el = document.createElement("a");
-    el.href = a.href;
-    el.className = `action action--${a.variant}`;
-    el.textContent = a.label;
-    if (a.href && a.href !== "#") { el.target = "_blank"; el.rel = "noopener"; }
-    wrap.appendChild(el);
-  });
+  actions.forEach((a) => wrap.appendChild(makeLink(a, `action action--${a.variant}`)));
   return wrap;
 }
 
@@ -85,8 +88,8 @@ function renderBio(b) {
   const s = document.createElement("section");
   s.className = "block bio";
 
-  // top-right action bar: CV / TG buttons
-  const actions = buildActions(b.actions, "bio__actions");
+  // top-right action bar: only the buttons flagged for the header (CV / TG)
+  const actions = buildActions(b.actions.filter((a) => a.inHeader), "bio__actions");
 
   const headline = document.createElement("div");
   headline.className = "bio__headline";
@@ -167,7 +170,10 @@ function renderCase(c) {
 function renderFooter(b) {
   const f = document.createElement("footer");
   f.className = "block footer";
-  f.appendChild(reveal(buildActions(b.actions, "footer__actions"), 0));
+  const title = document.createElement("h2");
+  title.className = "footer__title";
+  title.textContent = b.contactTitle;
+  f.append(reveal(title, 0), reveal(buildActions(b.actions, "footer__actions"), 1));
   return f;
 }
 
