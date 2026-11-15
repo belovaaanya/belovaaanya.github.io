@@ -43,11 +43,12 @@
   color-scheme: dark;
   --bg: #111111;
   --fg: #ffffff;
-  --muted: #7a7a7a;
+  --muted: #8a8a8a; /* 5:1 on pills — AA for 14–16px text */
   --body: rgba(255, 255, 255, 0.7);
   --tag-bg: rgba(255, 255, 255, 0.04);
   --line: rgba(255, 255, 255, 0.14);
   --radius: 8px;
+  --tg: #cc4410; /* Telegram button: deep enough for white 14px text (4.8:1, AA) */
   /* SF Pro on Apple devices, graceful sans fallback (all have Cyrillic) elsewhere */
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-rubik: "Rubik", var(--font-sans);
@@ -61,7 +62,7 @@
   color-scheme: light;
   --bg: #f4f4f6;
   --fg: #14141a;
-  --muted: #6a6a72;
+  --muted: #5f5f67;
   --body: rgba(20, 20, 26, 0.66);
   --tag-bg: rgba(20, 20, 26, 0.06);
   --line: rgba(20, 20, 26, 0.14);
@@ -71,7 +72,7 @@
     color-scheme: light;
     --bg: #f4f4f6;
     --fg: #14141a;
-    --muted: #6a6a72;
+    --muted: #5f5f67;
     --body: rgba(20, 20, 26, 0.66);
     --tag-bg: rgba(20, 20, 26, 0.06);
     --line: rgba(20, 20, 26, 0.14);
@@ -117,27 +118,32 @@ a { color: inherit; }
 #theme-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
 #theme-toggle svg { width: 18px; height: 18px; display: block; }
 
-/* language toggle (RU / EN) — same look as the theme toggle */
-#lang-toggle {
-  width: 40px; height: 40px; padding: 0; flex: none;
-  display: grid; place-items: center;
-  border: 1px solid var(--line); border-radius: 50%;
-  background: var(--tag-bg); color: var(--fg);
-  font: 500 13px/1 var(--font-rubik); letter-spacing: 0.02em;
-  cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+/* RU | EN segmented switch — one control on both pages (portfolio header + CV bar).
+   The current language is filled; the other one is a plain option. */
+.lang-switch {
+  display: inline-flex; flex: none; height: 40px; padding: 3px; border-radius: 20px;
+  background: var(--tag-bg); border: 1px solid var(--line);
+}
+.lang-switch__opt {
+  display: grid; place-items: center; min-width: 40px; padding: 0 10px; border: 0; border-radius: 17px;
+  background: none; color: var(--muted); cursor: pointer; text-decoration: none;
+  font: 500 13px/1 var(--font-rubik); letter-spacing: 0.05em;
+  transition: background 0.2s, color 0.2s;
   -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none;
 }
+.lang-switch__opt[aria-current], .lang-switch__opt[aria-pressed="true"] { background: var(--fg); color: var(--bg); cursor: default; }
 @media (hover: hover) {
-  #lang-toggle:hover { transform: scale(1.06); border-color: color-mix(in srgb, var(--fg) 30%, transparent); }
+  .lang-switch__opt:not([aria-current]):not([aria-pressed="true"]):hover { color: var(--fg); }
 }
-#lang-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
-#lang-toggle:focus:not(:focus-visible) { outline: none; }
-/* the extra toggle needs a little room on phones: tighten the header row */
+.lang-switch__opt:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.lang-switch__opt:focus:not(:focus-visible) { outline: none; }
+/* phones: the header row holds CV + tg + RU|EN + theme — every control 36px tall, one row */
 @media (max-width: 480px) {
-  .bio__actions { gap: 4px; }
-  .bio__actions .action { flex: none; padding: 4px 12px; letter-spacing: 0.02em; }
-  .bio__actions #lang-toggle, .bio__actions #theme-toggle { width: 36px; height: 36px; align-self: center; }
+  .actions.bio__actions { gap: 4px; }
+  .bio__actions .action { flex: none; height: 36px; padding: 4px 10px; letter-spacing: 0; }
+  .bio__actions #theme-toggle { width: 36px; height: 36px; }
+  .bio__actions .lang-switch { height: 36px; padding: 2px; }
+  .lang-switch__opt { min-width: 30px; padding: 0 4px; }
 }
 
 /* ── page container ──────────────────────────────────────────────────── */
@@ -166,7 +172,7 @@ html.js .reveal {
   display: inline-flex; align-items: center; justify-content: center;
   height: 32px; padding: 4px 16px;
   background: var(--tag-bg); color: var(--muted); border-radius: var(--radius);
-  font-family: var(--font-rubik); font-weight: 400; font-size: 16px; letter-spacing: 0.05em;
+  font-family: var(--font-rubik); font-weight: 400; font-size: 14px; letter-spacing: 0.05em;
   white-space: nowrap; text-decoration: none;
 }
 
@@ -187,7 +193,7 @@ html.js .reveal {
     color-mix(in srgb, var(--fg) 12%, transparent) 6%,
     color-mix(in srgb, var(--muted) 12%, transparent) 58%);
 }
-.action--tg { color: #fff; background: #ee5219; }
+.action--tg { color: #fff; background: var(--tg); }
 
 /* Mobile: kill the tap-highlight flash + long-press selection/callout on controls */
 .action, #theme-toggle {
@@ -233,7 +239,7 @@ html.js .reveal {
 .bio__headline { display: flex; align-items: center; gap: clamp(12px, 2vw, 24px); }
 .bio__name, .bio__role {
   font-family: var(--font-rubik); font-weight: 500;
-  font-size: clamp(28px, 4.2vw, 40px); line-height: 1.1; letter-spacing: -0.01em;
+  font-size: clamp(32px, 5.4vw, 56px); /* page title: one step above the 40px case titles */ line-height: 1.1; letter-spacing: -0.01em;
 }
 .bio__photo {
   width: clamp(76px, 8vw, 110px); aspect-ratio: 1; border-radius: 50%;
@@ -245,8 +251,8 @@ html.js .reveal {
 }
 .bio__pills { display: flex; flex-wrap: wrap; gap: 4px; }
 .bio__text {
-  margin: 0; font-family: var(--font-rubik); font-weight: 400; font-size: 14px; line-height: 1.5;
-  color: var(--fg);
+  margin: 0; font-family: var(--font-rubik); font-weight: 400; font-size: 16px; line-height: 1.5;
+  color: var(--body);
 }
 
 /* ── case block ──────────────────────────────────────────────────────── */
@@ -261,15 +267,16 @@ html.js .reveal {
 .case__client {
   margin: 0; font-family: var(--font-rubik); font-weight: 500; font-style: italic;
   font-size: clamp(16px, 2vw, 20px); line-height: 1.1; color: var(--fg);
+  margin-top: -14px; /* belongs to the title: 6px below it instead of the 20px block gap */
 }
 
-.case__row { display: flex; align-items: center; gap: clamp(20px, 2vw, 28px); }
+.case__row { display: flex; align-items: center; gap: clamp(20px, 2vw, 28px); margin-top: 8px; /* 28px of air above the image */ }
 .case__media { flex: 1 1 0; min-width: 0; }
 .case__summary {
   flex: 0 0 clamp(240px, 24%, 308px);
   display: flex; flex-direction: column;
-  font-family: var(--font-rubik); font-weight: 400; font-size: 14px; line-height: 1.5;
-  color: var(--fg);
+  font-family: var(--font-rubik); font-weight: 400; font-size: 16px; line-height: 1.5;
+  color: var(--body);
 }
 .case__summary p { margin: 0; }
 .case__summary p + p { margin-top: 1em; }
@@ -305,21 +312,16 @@ html.js .reveal {
 @media (prefers-reduced-motion: no-preference) {
   /* press feedback on every button */
   .action:active { transform: translateY(0) scale(0.97); transition-duration: 0.08s; }
-  #theme-toggle:active, #lang-toggle:active { transform: scale(0.92); }
+  #theme-toggle:active { transform: scale(0.92); }
+  .lang-switch__opt:active { transform: scale(0.94); }
 
-  /* case images: gentle lift on hover (on the wrap, not .case__media, which owns the reveal transition) */
-  .showcase-wrap { transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s; }
+  /* Case images and tags are not clickable, so they get no hover effect (it would promise a click). */
   /* bio photo: small playful tilt */
   .bio__photo { transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
-  /* pills + CV links */
-  .pill { transition: color 0.2s, background 0.2s; }
   .cv-link { transition: text-decoration-color 0.25s; }
-  .cv-lang__opt:active { transform: scale(0.94); }
 
   @media (hover: hover) {
-    .showcase-wrap:hover { transform: translateY(-4px) scale(1.006); filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.18)); }
     .bio__photo:hover { transform: rotate(-4deg) scale(1.04); }
-    .pill:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 8%, transparent); }
   }
 
   /* CV page: sections fade up one after another on load */

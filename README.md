@@ -45,7 +45,7 @@ content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` rend
     **top-right header buttons**. `ghost` = translucent, `tg` = solid orange.
   - `contactTitle` — heading above the footer buttons (e.g. `"Связаться со мной"`)
   - `text` — the bio paragraph
-- `en` — the **English version of the portfolio page** (the round **EN / RU** button next to the
+- `en` — the **English version of the portfolio page** (the **RU | EN** switch next to the
   theme toggle). Keys are the exact Russian strings from `bio` / `cases`, values their English
   versions, written natively. A string with no entry stays Russian, so **when you edit Russian copy,
   update its key in `en` too**. The choice is saved in `localStorage` (`lang`); in English the

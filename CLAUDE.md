@@ -39,7 +39,7 @@ header shows the buttons flagged `inHeader`; the footer shows all of them under 
 **RU / EN on the portfolio page.** `en` in `data.js` maps each Russian string of `bio` / `cases` to
 its English version (keys must match the Russian text exactly — edit both together; a missing key
 silently stays Russian). `main.js` deep-copies the content through `tr()` and re-renders `#app` when
-the `#lang-toggle` button (built in `main.js`, placed before `#theme-toggle`) is clicked; the choice
+an option of the `.lang-switch` RU | EN segmented control is clicked (built in `main.js`, placed before `#theme-toggle`; `cv.js` renders the same control as links — one component, styles in `styles.css`); the choice
 is stored in `localStorage.lang`, shared with `cv.html` (`cv.js` writes it, so the page follows the
 CV's language), and in English the CV button points to `cv.html?lang=en`.
 

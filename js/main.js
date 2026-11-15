@@ -23,12 +23,22 @@ function tr(v) {
   return v;
 }
 
-const langBtn = document.createElement("button");
-langBtn.id = "lang-toggle";
-langBtn.type = "button";
+// RU | EN segmented switch — the same control as on cv.html; the current language is highlighted.
+const langBtn = document.createElement("div");
+langBtn.className = "lang-switch";
+langBtn.setAttribute("role", "group");
+["ru", "en"].forEach((l) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "lang-switch__opt";
+  b.dataset.lang = l;
+  b.lang = l;
+  b.textContent = l.toUpperCase();
+  langBtn.appendChild(b);
+});
 function renderLangBtn() {
-  langBtn.textContent = LANG === "ru" ? "EN" : "RU"; // label = language you switch to
-  langBtn.setAttribute("aria-label", LANG === "ru" ? "Switch to English" : "Переключить на русский");
+  langBtn.setAttribute("aria-label", LANG === "en" ? "Language" : "Язык");
+  langBtn.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === LANG)));
   document.documentElement.lang = LANG;
   document.title = TITLES[LANG];
 }
@@ -234,8 +244,10 @@ if (reduce) {
 
 initTheme();
 
-langBtn.addEventListener("click", () => {
-  LANG = LANG === "ru" ? "en" : "ru";
+langBtn.addEventListener("click", (e) => {
+  const opt = e.target.closest("button");
+  if (!opt || opt.dataset.lang === LANG) return;
+  LANG = opt.dataset.lang;
   try { localStorage.setItem("lang", LANG); } catch (e) {}
   const theme = document.getElementById("theme-toggle");
   document.body.insertBefore(theme, app); // rescue the toggles before clearing #app
@@ -245,7 +257,7 @@ langBtn.addEventListener("click", () => {
   document.querySelectorAll(".block").forEach((b) => b.classList.add("is-in")); // no re-reveal on switch
   sizeShowcases();
   theme.dispatchEvent(new Event("langchange")); // theme toggle re-labels itself
-  langBtn.focus();
+  langBtn.querySelector(`[data-lang="${LANG}"]`).focus();
 });
 
 console.log("[portfolio] rendered", cases.length, "cases (vertical scroll)");

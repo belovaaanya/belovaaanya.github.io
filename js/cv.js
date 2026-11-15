@@ -34,13 +34,13 @@ function section(title, ...children) {
 const bar = el("nav", "cv-bar");
 const back = makeLink({ label: t.back, href: "./" }, "action action--ghost");
 const right = el("div", "actions");
-const langs = el("div", "cv-lang");
+const langs = el("div", "lang-switch");
 langs.setAttribute("aria-label", "Language");
 ["ru", "en"].forEach((l) => {
   const a = document.createElement("a");
   a.href = l === "ru" ? "cv.html" : "cv.html?lang=en";
   a.textContent = l.toUpperCase();
-  a.className = "cv-lang__opt";
+  a.className = "lang-switch__opt";
   a.lang = l;
   if (l === lang) a.setAttribute("aria-current", "true");
   langs.append(a);
