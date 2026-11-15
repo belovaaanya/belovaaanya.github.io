@@ -35,7 +35,7 @@ You can also re-run it manually from the **Actions** tab (`workflow_dispatch`).
 ## Edit the content
 
 All copy, tags, links and images live in **`js/data.js`** — the only file to touch to change
-content. `js/main.js` renders the bio, cases and footer from it.
+content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` renders the CV page.
 
 - `bio`:
   - `name`, `role`, `photo`
@@ -45,6 +45,11 @@ content. `js/main.js` renders the bio, cases and footer from it.
     **top-right header buttons**. `ghost` = translucent, `tg` = solid orange.
   - `contactTitle` — heading above the footer buttons (e.g. `"Связаться со мной"`)
   - `text` — the bio paragraph
+- `en` — the **English version of the portfolio page** (the **RU | EN** switch next to the
+  theme toggle). Keys are the exact Russian strings from `bio` / `cases`, values their English
+  versions, written natively. A string with no entry stays Russian, so **when you edit Russian copy,
+  update its key in `en` too**. The choice is saved in `localStorage` (`lang`); in English the
+  «View CV» button opens `cv.html?lang=en`, and opening the CV in a language switches the page to it.
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)
   - `title` — wrap the highlighted fragment in `**double asterisks**`
@@ -54,6 +59,22 @@ content. `js/main.js` renders the bio, cases and footer from it.
     `crop` = inner `[left%,top%,width%,height%]` or `null` for `object-fit:cover`). Rendered at
     design size and scaled to fit its column.
   - `summary` — array of paragraph strings shown beside the image (one `<p>` each)
+
+### CV page
+
+The header **«Смотреть CV»** button opens **`cv.html`** — a web version of the CV rendered by
+`js/cv.js` from the **`cv`** object in `js/data.js`, which has two languages, `cv.ru` and `cv.en`
+(each: `ui` labels, contacts, summary, `experience[]` with `{ title, text }` points, `artifacts`,
+`skills`, `education`, `courses`, `languages`). The **RU / EN** switch opens `cv.html` /
+`cv.html?lang=en`; write each language natively, not as a literal translation. **«Скачать PDF»**
+downloads that language's static file, `assets/cv/anna-belova-cv-ru.pdf` or `-en.pdf` — the same
+page printed with the `@media print` styles in `css/cv.css` (light, A4). **After editing `cv`,
+regenerate both PDFs:**
+
+```bash
+python3 serve.py 5555 &
+NODE_PATH=$(npm root -g) node tools/build-cv-pdf.mjs   # needs Playwright + Chromium
+```
 
 Images are stored as **WebP** in `assets/<case-id>/` (converted from Figma PNG exports for fast
 loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected).
@@ -73,16 +94,25 @@ loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected
   `:root[data-theme="light"]` and the light media query. Per-case title accents are darkened on
   light backgrounds so light hues stay readable.
 - `<meta name="darkreader-lock">` tells the Dark Reader extension to leave the site's colors alone.
-- Respects `prefers-reduced-motion` — the reveal animation is disabled and everything shows.
+- **Micro-interactions** (block at the end of `css/styles.css`): press feedback on buttons, a gentle
+  lift on case images and a tilt on the bio photo on hover, CV sections fading up on load, and a
+  circular reveal from the toggle when switching theme (View Transitions API, in `initTheme`).
+- Respects `prefers-reduced-motion` — the reveal animation, micro-interactions and theme reveal are
+  disabled and everything shows.
 
 ## Layout
 
 ```
 index.html          theme toggle + #app + inline pre-paint theme script; no content markup
+cv.html             CV page shell (#cv); content from data.js `cv` (?lang=en for English)
 css/styles.css      all styles: fonts, pills/buttons, showcase, reveal, theming, responsive
-js/data.js          ALL content — edit here (bio + cases[])
+css/cv.css          CV page layout + print/PDF styles
+js/data.js          ALL content — edit here (bio + cases[] + en + cv)
 js/main.js          renders bio/cases/footer from data.js, scales showcase images,
-                    reveal-on-scroll (IntersectionObserver), theme toggle
+                    reveal-on-scroll (IntersectionObserver)
+js/cv.js            renders the CV page
+js/shared.js        helpers used by both pages: nbsp(), makeLink(), buildActions(), theme toggle
+tools/build-cv-pdf.mjs  regenerates assets/cv/anna-belova-cv-{ru,en}.pdf from cv.html (Playwright)
 fonts/              Rubik (400 / 500 / 500-italic) — self-hosted (latin + cyrillic)
 assets/<case-id>/   case images (WebP)
 serve.py            no-cache static dev server
