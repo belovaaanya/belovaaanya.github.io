@@ -32,9 +32,8 @@ export const bio = {
     { label: "Написать в tg", href: "https://t.me/belovannaaa", variant: "tg", inHeader: true },
   ],
   text:
-    "Продуктовый дизайнер с 6-летним опытом в UX. Проектирую сложные B2B-продукты " +
-    "на стыке дизайна, исследований и аналитики данных. Помогаю превращать " +
-    "пользовательские инсайты в продуктовые решения",
+    "Продуктовый дизайнер, 6 лет в UX. Проектирую B2B-продукты на основе исследований " +
+    "и данных: перевожу обратную связь клиентов в решения для бэклога",
 };
 
 export const cases = [
@@ -51,7 +50,7 @@ export const cases = [
       ],
     },
     summary: [
-      "Спроектировала VoC Dashboard для продуктовых команд и C-level, объединив клиентскую обратную связь, продуктовые и UX-метрики в единый инструмент для принятия решений",
+      "Спроектировала VoC-дашборд для продуктовых команд и C-level: обратная связь клиентов, продуктовые и UX-метрики в одном окне вместо 8+ разрозненных отчётов",
     ],
   },
   {
@@ -69,13 +68,13 @@ export const cases = [
       ],
     },
     summary: [
-      "Спроектировала мобильное приложение, дизайн-систему и пользовательский опыт, помогая подготовить продукт к привлечению инвестиций и выходу на рынок",
+      "Спроектировала мобильное приложение и дизайн-систему из 50+ компонентов, провела 3 раунда юзабилити-тестов — доля успешно пройденных сценариев выросла на 40%",
     ],
   },
   {
     id: "corgi",
     tags: ["InsurTech", "B2B SaaS", "Redesign"],
-    title: "Разделила сложные страховые процессы **по ролям**",
+    title: "Разделила страховые процессы **по ролям**",
     accent: "#ff6b48",
     client: "Corgi Insurance Services",
     img: {
@@ -85,7 +84,7 @@ export const cases = [
       ],
     },
     summary: [
-      "Перестроила информационную архитектуру платформы для брокеров и андеррайтеров, сделав сложные страховые сценарии понятнее для новых пользователей и быстрее для опытных специалистов",
+      "Перестроила информационную архитектуру платформы для брокеров и андеррайтеров: каждая роль видит только свои сценарии — новичкам проще разобраться, опытным быстрее работать",
     ],
   },
   {
@@ -101,13 +100,13 @@ export const cases = [
       ],
     },
     summary: [
-      "Исследовала пользовательские сценарии и спроектировала онбординг, который помогает быстрее выбрать первый напиток и одновременно собирает данные для персональных рекомендаций",
+      "Исследовала, как выбирают первый напиток, и спроектировала онбординг, который ускоряет этот выбор и заодно собирает данные для персональных рекомендаций",
     ],
   },
   {
     id: "streaming",
     tags: ["UI Concept", "Entertainment"],
-    title: "Сократила путь до просмотра",
+    title: "Ускорила старт просмотра",
     accent: null,
     client: null,
     img: {
@@ -117,7 +116,7 @@ export const cases = [
       ],
     },
     summary: [
-      "Исследовала лучшие практики стриминговых сервисов и спроектировала интерфейс, который помогает быстрее принять решение и начать просмотр",
+      "Изучила стриминговые сервисы и спроектировала интерфейс, который сокращает путь от выбора до начала просмотра",
     ],
   },
   {
@@ -133,7 +132,7 @@ export const cases = [
       ],
     },
     summary: [
-      "Исследовала сценарии визуального поиска и поиска по штрихкоду, спроектировав интерфейс, который ускоряет выбор товара и оформление заказа",
+      "Спроектировала визуальный поиск и поиск по штрихкоду, которые ускоряют выбор товара и оформление заказа",
     ],
   },
   {
@@ -154,8 +153,8 @@ export const cases = [
       ],
     },
     summary: [
-      "Помимо продуктового дизайна создаю иллюстрации и стикерпаки, в которых исследую атмосферу, композицию и визуальное повествование",
-      "Мои работы выпускались совместно с No Kids Stickers (NKS) — брендом с аудиторией более 400 000 подписчиков",
+      "Помимо продуктового дизайна рисую иллюстрации и стикерпаки",
+      "Выпустила работы вместе с No Kids Stickers (NKS) — у бренда 400 000+ подписчиков",
     ],
   },
 ];
@@ -176,23 +175,23 @@ export const en = {
   "Смотреть CV": "View CV",
   "Написать по почте": "Email me",
   "Написать в tg": "Message on tg",
-  [bio.text]: "Product designer with 6 years of experience in UX. I design complex B2B products at the intersection of design, research and data analytics. I help turn user insights into product decisions",
+  [bio.text]: "Product designer with 6 years in UX. I design B2B products grounded in research and data, turning customer feedback into backlog decisions",
   "Сократила путь от клиентской обратной связи до **продуктового решения**": "Shortened the path from customer feedback to **product decisions**",
   "Альфа-Банк": "Alfa-Bank",
-  "Спроектировала VoC Dashboard для продуктовых команд и C-level, объединив клиентскую обратную связь, продуктовые и UX-метрики в единый инструмент для принятия решений": "Designed a VoC Dashboard for product teams and C-level executives, bringing customer feedback, product and UX metrics together in a single decision-making tool",
+  "Спроектировала VoC-дашборд для продуктовых команд и C-level: обратная связь клиентов, продуктовые и UX-метрики в одном окне вместо 8+ разрозненных отчётов": "Designed a VoC dashboard for product teams and C-level: customer feedback, product and UX metrics in one view instead of 8+ scattered reports",
   "Превратила **медицинскую технологию** в цифровой продукт": "Turned **medical technology** into a digital product",
-  "Спроектировала мобильное приложение, дизайн-систему и пользовательский опыт, помогая подготовить продукт к привлечению инвестиций и выходу на рынок": "Designed the mobile app, design system and user experience, helping prepare the product for fundraising and market launch",
-  "Разделила сложные страховые процессы **по ролям**": "Split complex insurance workflows **by role**",
-  "Перестроила информационную архитектуру платформы для брокеров и андеррайтеров, сделав сложные страховые сценарии понятнее для новых пользователей и быстрее для опытных специалистов": "Rebuilt the platform's information architecture for brokers and underwriters, making complex insurance scenarios clearer for new users and faster for experienced professionals",
+  "Спроектировала мобильное приложение и дизайн-систему из 50+ компонентов, провела 3 раунда юзабилити-тестов — доля успешно пройденных сценариев выросла на 40%": "Designed the mobile app and a design system of 50+ components, then ran 3 rounds of usability testing, raising task completion by 40%",
+  "Разделила страховые процессы **по ролям**": "Split insurance workflows **by role**",
+  "Перестроила информационную архитектуру платформы для брокеров и андеррайтеров: каждая роль видит только свои сценарии — новичкам проще разобраться, опытным быстрее работать": "Rebuilt the information architecture of a platform for brokers and underwriters so each role sees only its own workflows, making it easier for newcomers and faster for experienced users",
   "**Снизила барьер входа** без потери данных для персонализации": "**Lowered the entry barrier** without losing personalization data",
-  "Исследовала пользовательские сценарии и спроектировала онбординг, который помогает быстрее выбрать первый напиток и одновременно собирает данные для персональных рекомендаций": "Researched user scenarios and designed an onboarding flow that helps people choose their first drink faster while collecting data for personalized recommendations",
-  "Сократила путь до просмотра": "Shortened the path to watching",
-  "Исследовала лучшие практики стриминговых сервисов и спроектировала интерфейс, который помогает быстрее принять решение и начать просмотр": "Studied best practices of streaming services and designed an interface that helps viewers decide faster and start watching",
+  "Исследовала, как выбирают первый напиток, и спроектировала онбординг, который ускоряет этот выбор и заодно собирает данные для персональных рекомендаций": "Studied how people choose their first drink and designed an onboarding flow that speeds up that choice while collecting data for personal recommendations",
+  "Ускорила старт просмотра": "Got viewers watching sooner",
+  "Изучила стриминговые сервисы и спроектировала интерфейс, который сокращает путь от выбора до начала просмотра": "Studied streaming services and designed an interface that shortens the path from choosing to watching",
   "Сократила путь от поиска до покупки": "Shortened the path from search to purchase",
-  "Исследовала сценарии визуального поиска и поиска по штрихкоду, спроектировав интерфейс, который ускоряет выбор товара и оформление заказа": "Researched visual and barcode search scenarios and designed an interface that speeds up product selection and checkout",
+  "Спроектировала визуальный поиск и поиск по штрихкоду, которые ускоряют выбор товара и оформление заказа": "Designed visual and barcode search that speeds up product selection and checkout",
   "Некоммерческие иллюстрации": "Non-commercial illustrations",
-  "Помимо продуктового дизайна создаю иллюстрации и стикерпаки, в которых исследую атмосферу, композицию и визуальное повествование": "Alongside product design, I create illustrations and sticker packs that explore atmosphere, composition and visual storytelling",
-  "Мои работы выпускались совместно с No Kids Stickers (NKS) — брендом с аудиторией более 400 000 подписчиков": "My work has been released in collaboration with No Kids Stickers (NKS), a brand with an audience of over 400,000 followers",
+  "Помимо продуктового дизайна рисую иллюстрации и стикерпаки": "Alongside product design, I draw illustrations and sticker packs",
+  "Выпустила работы вместе с No Kids Stickers (NKS) — у бренда 400 000+ подписчиков": "Released work with No Kids Stickers (NKS), a brand with 400,000+ followers",
 };
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -219,8 +218,8 @@ const cvRu = {
     { label: "Портфолио: belovaaanya.github.io", href: "https://belovaaanya.github.io/" },
   ],
   summary: [
-    "Продуктовый дизайнер: 6 лет в UX, из них 4 года в B2B-финтехе Альфа-Банка (2M+ бизнес-клиентов). Enterprise-продукты, сложные B2B-сценарии, визуализация данных.",
-    "Соединяю дизайн, исследования и продуктовую аналитику: перевожу обратную связь клиентов и данные в решения для бэклога, а юридические и технические ограничения встраиваю в UX, чтобы они не становились барьером.",
+    "Продуктовый дизайнер: 6 лет в UX, из них 4 года в B2B-финтехе Альфа-Банка (2M+ бизнес-клиентов). Enterprise-продукты: платежи, выписки, авторизация, навигация, визуализация данных.",
+    "Перевожу обратную связь клиентов и данные в решения для бэклога, после релиза проверяю эффект сравнением до и после, а юридические и технические ограничения встраиваю в UX, чтобы они не становились барьером.",
     "Сейчас довожу VoC-дашборд для продактов и C-level от исследования и макета в Figma до рабочего приложения с LLM-выводами, работая в паре с ИИ-агентами.",
   ],
   experience: [
@@ -228,14 +227,15 @@ const cvRu = {
       role: "Product Designer & Senior UX Analyst",
       company: "Альфа-Банк",
       period: "янв 2026 — сейчас",
-      about: "B2B-экосистема банка: 2M+ бизнес-клиентов, четыре цифровых канала.",
+      about: "B2B-экосистема банка: 2M+ бизнес-клиентов, 500+ пользовательских сценариев, четыре цифровых канала.",
       points: [
-        { title: "VoC-дашборд", text: "Собрала метрики к плану, динамику, причины падения, события и отзывы в одно окно вместо 8+ разрозненных отчётов. Опросила и проинтервьюировала 20+ стейкхолдеров, вывела из этого сценарии и информационную архитектуру и защитила концепт перед руководителем высшего звена." },
-        { title: "От макета до продукта с ИИ-агентами", text: "Довела дашборд от макета до рабочего приложения силами одного дизайнера на 30% времени с ИИ-агентами: сверила с Figma 12 из 12 блоков, закрыла 52 замечания руководителей, покрыла код 1 260 автотестами." },
+        { title: "VoC-дашборд", text: "Собрала метрики к плану, динамику, причины падения, события и отзывы в одно окно вместо 8+ разрозненных отчётов. Опросила и проинтервьюировала 20+ стейкхолдеров, вывела из их ответов сценарии и информационную архитектуру и защитила концепт перед C-level." },
+        { title: "От макета до продукта с ИИ-агентами", text: "Довела дашборд от макета до рабочего приложения в одиночку при загрузке 30% вместе с ИИ-агентами: сверила с Figma 12 из 12 блоков, закрыла 52 замечания руководителей, покрыла код 1 260 автотестами." },
         { title: "Методика и доверие к цифрам", text: "Нашла 3 причины расхождения с отчётами ДКО и перевела дашборд на их методику, вынесла расчёт в интерфейс («Как считается») и подключила внутреннюю LLM банка, чтобы «Главный вывод» формировался автоматически." },
         { title: "UX-аудит и приоритизация", text: "Свела конкурентный анализ (Т-Банк, Точка, Озон), 3 500+ обращений клиентов и 170+ находок экспертного аудита мобильного B2B-приложения в единый бэклог. Построила модель приоритизации «тяжесть × охват × уверенность» для плана быстрых побед и крупных доработок и сузила 117 UX-проблем до 18 приоритетных." },
-        { title: "Аудит экосистемы", text: "Пересобрала флоу экспорта выписки и другие ключевые сценарии по итогам аудита мобильной B2B-экосистемы, в котором выявила 20+ критических несоответствий." },
+        { title: "Аудит экосистемы", text: "Пересобрала флоу экспорта выписки и другие сценарии по итогам аудита мобильной B2B-экосистемы, в котором выявила 20+ критических несоответствий." },
         { title: "Дизайн-ревью и прототипы", text: "Проверяю макеты перед релизом и гипотезы на ИИ-прототипах, чтобы ошибки ловились до разработки." },
+        { title: "Коммуникация с руководством", text: "Свела VoC, продуктовые метрики и UX-находки в материалы для эскалаций уровня CEO-1. Презентацию, подготовленную в соавторстве, руководитель департамента назвал одной из лучших в истории подразделения." },
       ],
     },
     {
@@ -244,10 +244,10 @@ const cvRu = {
       period: "май 2022 — дек 2025",
       about: null,
       points: [
-        { title: "Миграция с легаси", text: "Выявила 50+ ключевых доработок нового интернет-банка для МСБ и корпоративных клиентов и довела их до бэклогов команд — VoC вернулся к прежним значениям за 8 недель." },
-        { title: "Автоматизация аналитики", text: "Запустила анализ обратной связи на Python + LLM для 5 000+ обращений в месяц и сократила обработку с 14 до 2 дней — экономия 2M+ ₽ в год." },
-        { title: "Единая приоритизация", text: "Свела 300+ ключевых проблем из колл-центра, чата, бизнес-поддержки и VoC в общий фреймворк приоритизации для 100+ продуктовых команд." },
-        { title: "Data storytelling", text: "Связала релизы с динамикой удовлетворённости клиентов и защищала тренды перед C-level, чтобы продуктовые решения принимались на данных." },
+        { title: "Миграция с легаси", text: "Выявила 50+ доработок нового интернет-банка для МСБ и корпоративных клиентов и довела их до бэклогов команд — VoC вернулся к прежним значениям за 8 недель." },
+        { title: "Автоматизация аналитики", text: "Запустила анализ обратной связи на Python + LLM для 5 000+ обращений в месяц, ввела метрики качества разметки (точность классификации, поиск дублей) и сократила обработку с 14 до 2 дней — экономия 2M+ ₽ в год." },
+        { title: "Единая приоритизация", text: "Свела 300+ проблем из колл-центра, чата, бизнес-поддержки и VoC в общий фреймворк приоритизации для 100+ продуктовых команд." },
+        { title: "Data storytelling", text: "Связала релизы с динамикой удовлетворённости клиентов и защитила выводы перед C-level, чтобы продуктовые решения опирались на данные." },
       ],
     },
     {
@@ -256,8 +256,8 @@ const cvRu = {
       period: "апр 2021 — дек 2023 · стартап, частичная занятость",
       about: "Технологический стартап с собственной разработкой и патентами: железо и софт для анализа макро- и микроэлементов.",
       points: [
-        { title: "Продукт с нуля", text: "Спроектировала мобильное приложение от информационной архитектуры и ключевых флоу до high-fidelity интерфейсов и прототипов." },
-        { title: "Data-driven улучшения", text: "Провела 3 итерации юзабилити-тестов в Maze и внедрила 20+ улучшений — доля успешно пройденных ключевых сценариев выросла на 40%." },
+        { title: "Продукт с нуля", text: "Спроектировала мобильное приложение от информационной архитектуры и флоу до high-fidelity интерфейсов и прототипов." },
+        { title: "Data-driven улучшения", text: "Провела 3 итерации юзабилити-тестов в Maze и внедрила 20+ улучшений — доля успешно пройденных сценариев выросла на 40%." },
         { title: "Дизайн-система", text: "Собрала библиотеку из 50+ компонентов Figma с дизайн-токенами и запустила дизайн и разработку параллельно." },
         { title: "Продуктовая стратегия", text: "Подготовила бизнес-план выхода в Канаду (unit-экономика, TAM/SAM/SOM) и привела стартап к партнёрству с YEDI University и 4M ₽ инвестиций." },
       ],
@@ -269,8 +269,8 @@ const cvRu = {
       about: "Агентство UX-исследований и дизайна; клиенты из B2B и B2C: Philip Morris, М.Видео, МегаФон, Yota, Касперский и др.",
       points: [
         { title: "Прототипы", text: "Собрала 20+ интерактивных прототипов в Figma с состояниями и edge-кейсами, чтобы решения проверялись до разработки." },
-        { title: "Исследования", text: "Провела 20+ исследований (юзабилити-тесты, дневники, CJM, конкурентный анализ) и выявила 100+ UX-проблем. Разобрала 50+ сценариев B2B-кабинетов конкурентов и обновила CJM для 15M клиентов Philip Morris." },
-        { title: "Менторство", text: "Онбордила и менторила junior-дизайнеров и исследователей." },
+        { title: "Исследования", text: "Провела 20+ исследований (юзабилити-тесты, дневники, CJM, конкурентный анализ) и выявила 100+ UX-проблем. Разобрала 50+ сценариев B2B-кабинетов и дашбордов телеком-операторов и нашла 10+ продуктовых возможностей. Обновила CJM для 15M клиентов Philip Morris и собрала 250+ аналитических срезов." },
+        { title: "Менторство", text: "Ввела в работу junior-дизайнеров и исследователей и стала для них ментором." },
       ],
     },
     {
@@ -288,7 +288,7 @@ const cvRu = {
       period: "окт 2020 — авг 2021",
       about: "Студия с внутренними проектами и внешними заказами.",
       points: [
-        { title: null, text: "Спроектировала web- и mobile-интерфейсы для e-commerce, доставки еды и образовательной платформы, собрала 30+ компонентов Figma и нашла 40+ инсайтов на тестах ключевых флоу." },
+        { title: null, text: "Спроектировала web- и mobile-интерфейсы для e-commerce, доставки еды и образовательной платформы, собрала 30+ компонентов Figma и нашла 40+ инсайтов на юзабилити-тестах." },
       ],
     },
     {
@@ -297,7 +297,7 @@ const cvRu = {
       period: "окт 2019 — апр 2021",
       about: null,
       points: [
-        { title: null, text: "Перевела бизнес-требования РусГидро и Рослесхоза в user stories, use cases и спецификации для frontend и backend, разобрала edge-кейсы enterprise-процессов и сделала UI для отдельных задач." },
+        { title: null, text: "Перевела бизнес-требования РусГидро и Рослесхоза в user stories, use cases и спецификации для frontend и backend, разобрала edge-кейсы enterprise-процессов и спроектировала часть интерфейсов." },
       ],
     },
   ],
@@ -306,9 +306,9 @@ const cvRu = {
     { label: "VoC B2B — релизы приложения", href: "https://belovaaanya.github.io/voc-dashboard-releases/", text: "десктопное приложение для продактов" },
   ],
   skills: [
-    { group: "Продуктовый дизайн", items: "User flows, информационная архитектура, wireframes, high-fidelity UI, mobile и web, iOS HIG, Material Design, дизайн-системы и токены, handoff" },
+    { group: "Продуктовый дизайн", items: "User flows, информационная архитектура, wireframes, high-fidelity UI, mobile и web, iOS HIG, Material Design, дизайн-системы и токены, BPMN / UML, handoff" },
     { group: "Figma", items: "Auto Layout, Components, Variants, Variables, Design Tokens, интерактивные прототипы" },
-    { group: "Исследования", items: "Юзабилити-тесты (Maze), CustDev, интервью, CJM / UJM, JTBD, конкурентный анализ, A/B-тесты (p-value, sample size)" },
+    { group: "Исследования", items: "Юзабилити-тесты (Maze), CustDev, интервью, CJM / UJM, JTBD, Service Blueprint, конкурентный анализ, root cause analysis, сегментация, pre/post-анализ, A/B-тесты (p-value, sample size)" },
     { group: "ИИ и аналитика", items: "ИИ-агенты в разработке, собственные скиллы для Claude — правила UX/UI и редактуры, по которым ИИ проектирует и ревьюит экраны, LLM-инсайты и саммари, промптинг, Python, R, Excel" },
     { group: "Метрики", items: "VoC, NPS, CES, Usage, Claim Rate, Contact Rate, Bounce Rate" },
     { group: "Инструменты", items: "Figma, Maze, Jira, Confluence, Python, LLM-инструменты" },
@@ -340,8 +340,8 @@ const cvEn = {
     { label: "Portfolio: belovaaanya.github.io", href: "https://belovaaanya.github.io/" },
   ],
   summary: [
-    "I'm a product designer with 6 years in UX, including 4+ years in B2B fintech at Alfa-Bank, a banking ecosystem serving 2M+ business customers. I focus on enterprise products, complex B2B workflows and data visualization.",
-    "I combine design, research and product analytics: I turn customer feedback and data into backlog-ready decisions, and treat legal and technical constraints as part of the UX rather than a blocker.",
+    "I'm a product designer with 6 years in UX, including 4+ years in B2B fintech at Alfa-Bank, a banking ecosystem serving 2M+ business customers. I focus on enterprise products (payments, statements, authentication, navigation) and data visualization.",
+    "I combine design, research and product analytics: I turn customer feedback and data into backlog-ready decisions, check their impact after release with pre/post analysis, and treat legal and technical constraints as part of the UX rather than a blocker.",
     "Right now I'm taking a Voice of Customer dashboard end-to-end, from stakeholder research and Figma design to a working app with LLM-generated insights, built together with AI agents.",
   ],
   experience: [
@@ -349,14 +349,15 @@ const cvEn = {
       role: "Product Designer & Senior UX Analyst",
       company: "Alfa-Bank",
       period: "Jan 2026 — present",
-      about: "B2B banking ecosystem: 2M+ business customers across four digital channels.",
+      about: "B2B banking ecosystem: 2M+ business customers, 500+ user journeys, four digital channels.",
       points: [
         { title: "Voice of Customer dashboard", text: "Led discovery and UX/UI for a single dashboard that replaces 8+ disconnected reports, bringing targets, trends, root causes, incidents and customer comments into one view. Interviewed and surveyed 20+ stakeholders to define use cases and information architecture, and defended the concept to senior leadership." },
         { title: "From design to product with AI agents", text: "Designed and shipped the working dashboard as a solo designer at ~30% capacity, pairing with AI agents: matched 12 of 12 blocks to the Figma design, resolved all 52 leadership review comments and covered the code with 1,260 automated tests." },
         { title: "Trustworthy numbers", text: "Traced 3 causes of mismatch with the official CX reports and aligned the dashboard with their methodology, exposing the calculation in the UI and adding an LLM-generated key takeaway via the bank's internal model." },
         { title: "UX audit & prioritization", text: "Combined a competitor analysis of leading business banking apps with 3,500+ customer feedback items and 170+ expert audit findings into a single backlog for the B2B mobile app, then built a severity × reach × confidence prioritization model, narrowing 117 UX issues down to a top-18 roadmap of quick wins and major improvements." },
-        { title: "Ecosystem audit", text: "Audited the B2B mobile ecosystem and redesigned the statement export flow and other key journeys, flagging 20+ critical UX/UI inconsistencies." },
+        { title: "Ecosystem audit", text: "Audited the B2B mobile ecosystem and redesigned the statement export flow and other journeys, flagging 20+ critical UX/UI inconsistencies." },
         { title: "Design reviews & prototyping", text: "Review designs before release and validate hypotheses with AI-assisted interactive prototypes, catching issues before development." },
+        { title: "Executive communication", text: "Turned VoC, product metrics and UX findings into briefs for CEO-1 escalations; the department head called a presentation I co-authored one of the best in the department's history." },
       ],
     },
     {
@@ -365,9 +366,9 @@ const cvEn = {
       period: "May 2022 — Dec 2025",
       about: null,
       points: [
-        { title: "Legacy migration", text: "Identified 50+ key fixes for the new SME and corporate internet bank and got them into product backlogs, bringing customer satisfaction back to benchmark within 8 weeks of migration." },
-        { title: "Feedback automation", text: "Led a Python + LLM pilot that analyzes 5,000+ customer tickets a month, reducing processing time from 14 to 2 days and saving ₽2M+ a year." },
-        { title: "Shared prioritization", text: "Consolidated 300+ major friction points from the call center, chat, business support and VoC into one prioritization framework used by 100+ product teams." },
+        { title: "Legacy migration", text: "Identified 50+ fixes for the new SME and corporate internet bank and got them into product backlogs, bringing customer satisfaction back to benchmark within 8 weeks of migration." },
+        { title: "Feedback automation", text: "Led a Python + LLM pilot that analyzes 5,000+ customer tickets a month, set up labeling quality metrics (classification accuracy, duplicate detection) and cut processing time from 14 to 2 days, saving ₽2M+ a year." },
+        { title: "Shared prioritization", text: "Consolidated 300+ friction points from the call center, chat, business support and VoC into one prioritization framework used by 100+ product teams." },
         { title: "Data storytelling", text: "Tracked how releases moved customer satisfaction and presented the trends to C-level, turning UX insights into inputs for product decisions." },
       ],
     },
@@ -378,7 +379,7 @@ const cvEn = {
       about: "Hardware + software startup with patented technology for macro- and micronutrient analysis.",
       points: [
         { title: "0 to 1", text: "Designed a mobile product from scratch, from information architecture and core flows to high-fidelity UI and interactive prototypes." },
-        { title: "Iterative testing", text: "Ran 3 rounds of usability testing in Maze and shipped 20+ UX improvements, raising key task completion by 40%." },
+        { title: "Iterative testing", text: "Ran 3 rounds of usability testing in Maze and shipped 20+ UX improvements, raising task completion by 40%." },
         { title: "Design system", text: "Built and documented a library of 50+ Figma components with design tokens, enabling design and development to run in parallel." },
         { title: "Go-to-market", text: "Prepared the Canada market-entry plan (unit economics, TAM/SAM/SOM), leading to a partnership with YEDI University and ₽4M in funding." },
       ],
@@ -390,7 +391,7 @@ const cvEn = {
       about: "UX research and design agency; B2B and B2C clients incl. Philip Morris, M.Video, MegaFon, Yota and Kaspersky.",
       points: [
         { title: "Prototyping", text: "Built 20+ high-fidelity interactive prototypes in Figma with full states and edge cases, so solutions were tested before development." },
-        { title: "Research", text: "Delivered 20+ studies (usability tests, diary studies, journey mapping, competitive analysis), uncovering 100+ UX issues. Benchmarked 50+ B2B account and dashboard flows and updated the CJM for Philip Morris's 15M customers." },
+        { title: "Research", text: "Delivered 20+ studies (usability tests, diary studies, journey mapping, competitive analysis), uncovering 100+ UX issues. Benchmarked 50+ B2B account and dashboard flows of telecom operators, surfacing 10+ product opportunities, and updated the CJM for Philip Morris's 15M customers with 250+ analytical cuts." },
         { title: "Mentoring", text: "Onboarded and mentored junior designers and researchers." },
       ],
     },
@@ -427,9 +428,9 @@ const cvEn = {
     { label: "VoC B2B releases", href: "https://belovaaanya.github.io/voc-dashboard-releases/", text: "desktop app for product managers" },
   ],
   skills: [
-    { group: "Product design", items: "User flows, information architecture, wireframing, high-fidelity UI, mobile & web, iOS HIG, Material Design, design systems & tokens, developer handoff" },
+    { group: "Product design", items: "User flows, information architecture, wireframing, high-fidelity UI, mobile & web, iOS HIG, Material Design, design systems & tokens, BPMN / UML, developer handoff" },
     { group: "Figma", items: "Auto Layout, Components, Variants, Variables, Design Tokens, interactive prototyping" },
-    { group: "Research", items: "Usability testing (Maze), customer interviews, CJM / UJM, JTBD, competitive analysis, A/B testing (p-value, sample size)" },
+    { group: "Research", items: "Usability testing (Maze), customer interviews, CJM / UJM, JTBD, service blueprints, competitive analysis, root cause analysis, segmentation, pre/post analysis, A/B testing (p-value, sample size)" },
     { group: "AI & analytics", items: "AI agents in development, custom Claude skills that encode my UX, UI and UX writing rules for designing and reviewing screens, LLM insights & summaries, prompting, Python, R, Excel" },
     { group: "Metrics", items: "VoC, NPS, CES, Usage, Claim Rate, Contact Rate, Bounce Rate" },
     { group: "Tools", items: "Figma, Maze, Jira, Confluence, Python, LLM tools" },
