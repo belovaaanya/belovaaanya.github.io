@@ -37,8 +37,11 @@ contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `co
 header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.
 
 **CV page.** The «Смотреть CV» header button links to `cv.html`, rendered by `js/cv.js` from the
-`cv` object in `data.js` (styles in `css/cv.css`, incl. `@media print`). «Скачать PDF» downloads the
-**static** `assets/cv/anna-belova-cv.pdf` — whenever `cv` or the print styles change, regenerate it
+`cv` object in `data.js` — `cv.ru` and `cv.en`, switched by `?lang=en` (styles in `css/cv.css`, incl.
+`@media print`). Write each language natively (RU: perfective feminine verb of the result, metric at
+the end; EN: past-tense action verb, effect via "…, raising/reducing …"), never a 1:1 translation.
+«Скачать PDF» downloads the **static** `assets/cv/anna-belova-cv-{ru,en}.pdf` — whenever `cv` or the
+print styles change, regenerate both
 with `NODE_PATH=$(npm root -g) node tools/build-cv-pdf.mjs` (server on 5555 running) and commit
 the PDF in the same change, or the download goes stale.
 

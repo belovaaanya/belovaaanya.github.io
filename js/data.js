@@ -163,17 +163,21 @@ export const cases = [
 // ─────────────────────────────────────────────────────────────────────────
 //  CV page (cv.html, rendered by js/cv.js). Merged from the RU + EN PDF CVs.
 //  pdf:          the downloadable file behind «Скачать PDF». It is a static file
-//                generated from this page — rebuild it after editing this object:
+//                generated from this page — rebuild both after editing:
 //                `node tools/build-cv-pdf.mjs` (see README).
 //  experience[].points: { title, text } — title is the bold lead-in (may be null).
+//  Two languages: cv.ru and cv.en (cv.html?lang=en). Write each natively — not a
+//  literal translation (RU: perfective verb + result; EN: past-tense verb, "…, raising X").
 // ─────────────────────────────────────────────────────────────────────────
 
-export const cv = {
+const cvRu = {
+  lang: "ru",
+  ui: { back: "← Портфолио", download: "Скачать PDF", about: "О себе", experience: "Опыт", artifacts: "Артефакты", skills: "Навыки", education: "Образование", courses: "Курсы", languages: "Языки" },
   name: "Анна Белова",
   role: "Продуктовый дизайнер · B2B-финтех · Mobile & Web",
   location: "Санкт-Петербург · удалённо, гибрид, командировки, релокация",
-  pdf: "assets/cv/anna-belova-cv.pdf",
-  pdfName: "Anna_Belova_CV.pdf",
+  pdf: "assets/cv/anna-belova-cv-ru.pdf",
+  pdfName: "Anna_Belova_CV_RU.pdf",
   contacts: [
     { label: "belova.annya@gmail.com", href: "mailto:belova.annya@gmail.com" },
     { label: "Telegram: @belovannaaa", href: "https://t.me/belovannaaa" },
@@ -285,3 +289,125 @@ export const cv = {
   ],
   languages: "Русский — родной · Английский — Upper-Intermediate (B2)",
 };
+
+const cvEn = {
+  lang: "en",
+  ui: { back: "← Portfolio", download: "Download PDF", about: "About", experience: "Experience", artifacts: "Artifacts", skills: "Skills", education: "Education", courses: "Courses", languages: "Languages" },
+  name: "Anna Belova",
+  role: "Product Designer · B2B Fintech · Mobile & Web",
+  location: "Saint Petersburg, Russia · open to remote, hybrid, travel and relocation",
+  pdf: "assets/cv/anna-belova-cv-en.pdf",
+  pdfName: "Anna_Belova_CV_EN.pdf",
+  contacts: [
+    { label: "belova.annya@gmail.com", href: "mailto:belova.annya@gmail.com" },
+    { label: "Telegram: @belovannaaa", href: "https://t.me/belovannaaa" },
+    { label: "Portfolio: belovaaanya.github.io", href: "https://belovaaanya.github.io/" },
+  ],
+  summary: [
+    "I'm a product designer with 6 years in UX, including 4+ years in B2B fintech at Alfa-Bank, a banking ecosystem serving 2M+ business customers. I focus on enterprise products, complex B2B workflows and data visualization.",
+    "I combine design, research and product analytics: I turn customer feedback and data into backlog-ready decisions, and treat legal and technical constraints as part of the UX rather than a blocker.",
+    "Right now I'm taking a Voice of Customer dashboard end-to-end, from stakeholder research and Figma design to a working app with LLM-generated insights, built together with AI agents.",
+  ],
+  experience: [
+    {
+      role: "Product Designer & Senior UX Analyst",
+      company: "Alfa-Bank",
+      period: "Jan 2026 — present",
+      about: "B2B banking ecosystem: 2M+ business customers across four digital channels.",
+      points: [
+        { title: "Voice of Customer dashboard", text: "Led discovery and UX/UI for a single dashboard that replaces 8+ disconnected reports, bringing targets, trends, root causes, incidents and customer comments into one view. Interviewed and surveyed 20+ stakeholders to define use cases and information architecture, and defended the concept to senior leadership." },
+        { title: "From design to product with AI agents", text: "Designed and shipped the working dashboard as a solo designer at ~30% capacity, pairing with AI agents: matched 12 of 12 blocks to the Figma design, resolved all 52 leadership review comments and covered the code with 1,260 automated tests." },
+        { title: "Trustworthy numbers", text: "Traced 3 causes of mismatch with the official CX reports and aligned the dashboard with their methodology, exposing the calculation in the UI and adding an LLM-generated key takeaway via the bank's internal model." },
+        { title: "UX audit", text: "Audited the B2B mobile ecosystem, flagging 20+ critical UX/UI inconsistencies and redesigning the statement export flow and other key journeys." },
+        { title: "Design reviews & prototyping", text: "Review designs before release and validate hypotheses with AI-assisted interactive prototypes, catching issues before development." },
+      ],
+    },
+    {
+      role: "Senior UX Analyst",
+      company: "Alfa-Bank",
+      period: "May 2022 — Dec 2025",
+      about: null,
+      points: [
+        { title: "Legacy migration", text: "Identified 50+ key fixes for the new SME and corporate internet bank and got them into product backlogs, bringing customer satisfaction back to benchmark within 8 weeks of migration." },
+        { title: "Feedback automation", text: "Led a Python + LLM pilot that analyzes 5,000+ customer tickets a month, reducing processing time from 14 to 2 days and saving ₽2M+ a year." },
+        { title: "Shared prioritization", text: "Consolidated 300+ major friction points from the call center, chat, business support and VoC into one prioritization framework used by 100+ product teams." },
+        { title: "Data storytelling", text: "Tracked how releases moved customer satisfaction and presented the trends to C-level, turning UX insights into inputs for product decisions." },
+      ],
+    },
+    {
+      role: "Product Designer",
+      company: "IonTrack",
+      period: "Apr 2021 — Dec 2023 · startup, part-time",
+      about: "Hardware + software startup with patented technology for macro- and micronutrient analysis.",
+      points: [
+        { title: "0 to 1", text: "Designed a mobile product from scratch, from information architecture and core flows to high-fidelity UI and interactive prototypes." },
+        { title: "Iterative testing", text: "Ran 3 rounds of usability testing in Maze and shipped 20+ UX improvements, raising key task completion by 40%." },
+        { title: "Design system", text: "Built and documented a library of 50+ Figma components with design tokens, enabling design and development to run in parallel." },
+        { title: "Go-to-market", text: "Prepared the Canada market-entry plan (unit economics, TAM/SAM/SOM), leading to a partnership with YEDI University and ₽4M in funding." },
+      ],
+    },
+    {
+      role: "UX/UI Designer & CX/UX Researcher",
+      company: "CrowdTesting",
+      period: "Aug 2021 — May 2022",
+      about: "UX research and design agency; B2B and B2C clients incl. Philip Morris, M.Video, MegaFon, Yota and Kaspersky.",
+      points: [
+        { title: "Prototyping", text: "Built 20+ high-fidelity interactive prototypes in Figma with full states and edge cases, so solutions were tested before development." },
+        { title: "Research", text: "Delivered 20+ studies (usability tests, diary studies, journey mapping, competitive analysis), uncovering 100+ UX issues. Benchmarked 50+ B2B account and dashboard flows and updated the CJM for Philip Morris's 15M customers." },
+        { title: "Mentoring", text: "Onboarded and mentored junior designers and researchers." },
+      ],
+    },
+    {
+      role: "Product Designer · project-based",
+      company: "ModumLab",
+      period: "Mar 2022 — Apr 2022",
+      about: null,
+      points: [
+        { title: null, text: "Redesigned an iOS learning platform: user stories, journey maps, detailed flows, high-fidelity UI and prototypes, ready for usability testing and developer handoff." },
+      ],
+    },
+    {
+      role: "UX/UI Designer · freelance",
+      company: "EvilUnion",
+      period: "Oct 2020 — Aug 2021",
+      about: "Design studio with in-house and client projects.",
+      points: [
+        { title: null, text: "Designed web and mobile experiences for e-commerce, food delivery and education products end-to-end, building 30+ reusable Figma components and surfacing 40+ UX insights through usability testing." },
+      ],
+    },
+    {
+      role: "System Analyst",
+      company: "TaskData",
+      period: "Oct 2019 — Apr 2021",
+      about: null,
+      points: [
+        { title: null, text: "Translated business needs into user stories, use cases and specs for frontend and backend teams on enterprise projects (RusHydro, Rosleskhoz), mapping edge cases and technical constraints and designing UI for selected tasks." },
+      ],
+    },
+  ],
+  artifacts: [
+    { label: "VoC dashboard journal", href: "https://belovaaanya.github.io/voc-dashboard-releases/journal/", text: "how the dashboard went from mockup to product: decisions, metrics, architecture (in Russian)" },
+    { label: "VoC B2B releases", href: "https://belovaaanya.github.io/voc-dashboard-releases/", text: "desktop app for product managers" },
+  ],
+  skills: [
+    { group: "Product design", items: "User flows, information architecture, wireframing, high-fidelity UI, mobile & web, iOS HIG, Material Design, design systems & tokens, developer handoff" },
+    { group: "Figma", items: "Auto Layout, Components, Variants, Variables, Design Tokens, interactive prototyping" },
+    { group: "Research", items: "Usability testing (Maze), customer interviews, CJM / UJM, JTBD, competitive analysis, A/B testing (p-value, sample size)" },
+    { group: "AI & analytics", items: "AI agents in development, LLM insights & summaries, prompting, Python, R, Excel" },
+    { group: "Metrics", items: "VoC, NPS, CES, Usage, Claim Rate, Contact Rate, Bounce Rate" },
+    { group: "Tools", items: "Figma, Maze, Jira, Confluence, Python, LLM tools" },
+  ],
+  education: [
+    { title: "ITMO University — Master's degree", text: "Multimedia Technologies, Design & Usability · Human-Computer Systems Design", period: "2020 — 2022" },
+    { title: "Saint Petersburg State University — Bachelor's degree", text: "Applied Mathematics and Computer Science", period: "2016 — 2020" },
+  ],
+  courses: [
+    "UPROCK: Product Researcher & Designer",
+    "Bang Bang Education: UX Design, Behavioral UX Design, Figma",
+    "Evgeny Ivanov (ex-Sber): UI Design for Mobile Interfaces",
+    "Alfa-Bank: Customer Journey Mapping, Quantitative Research Methods, UX Writing, Data-Driven CX Management, Generative AI & Prompt Engineering",
+  ],
+  languages: "English — Upper-Intermediate (B2) · Russian — native",
+};
+
+export const cv = { ru: cvRu, en: cvEn };

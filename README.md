@@ -58,11 +58,13 @@ content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` rend
 ### CV page
 
 The header **«Смотреть CV»** button opens **`cv.html`** — a web version of the CV rendered by
-`js/cv.js` from the **`cv`** object in `js/data.js` (contacts, summary, `experience[]` with
-`{ title, text }` points, `artifacts`, `skills`, `education`, `courses`, `languages`). Its
-**«Скачать PDF»** button downloads the static file `assets/cv/anna-belova-cv.pdf`, which is the same
+`js/cv.js` from the **`cv`** object in `js/data.js`, which has two languages, `cv.ru` and `cv.en`
+(each: `ui` labels, contacts, summary, `experience[]` with `{ title, text }` points, `artifacts`,
+`skills`, `education`, `courses`, `languages`). The **RU / EN** switch opens `cv.html` /
+`cv.html?lang=en`; write each language natively, not as a literal translation. **«Скачать PDF»**
+downloads that language's static file, `assets/cv/anna-belova-cv-ru.pdf` or `-en.pdf` — the same
 page printed with the `@media print` styles in `css/cv.css` (light, A4). **After editing `cv`,
-regenerate the PDF:**
+regenerate both PDFs:**
 
 ```bash
 python3 serve.py 5555 &
@@ -93,7 +95,7 @@ loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected
 
 ```
 index.html          theme toggle + #app + inline pre-paint theme script; no content markup
-cv.html             CV page shell (#cv); content from data.js `cv`
+cv.html             CV page shell (#cv); content from data.js `cv` (?lang=en for English)
 css/styles.css      all styles: fonts, pills/buttons, showcase, reveal, theming, responsive
 css/cv.css          CV page layout + print/PDF styles
 js/data.js          ALL content — edit here (bio + cases[] + cv)
@@ -101,7 +103,7 @@ js/main.js          renders bio/cases/footer from data.js, scales showcase image
                     reveal-on-scroll (IntersectionObserver)
 js/cv.js            renders the CV page
 js/shared.js        helpers used by both pages: nbsp(), makeLink(), buildActions(), theme toggle
-tools/build-cv-pdf.mjs  regenerates assets/cv/anna-belova-cv.pdf from cv.html (Playwright)
+tools/build-cv-pdf.mjs  regenerates assets/cv/anna-belova-cv-{ru,en}.pdf from cv.html (Playwright)
 fonts/              Rubik (400 / 500 / 500-italic) — self-hosted (latin + cyrillic)
 assets/<case-id>/   case images (WebP)
 serve.py            no-cache static dev server

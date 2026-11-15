@@ -1,10 +1,17 @@
-import { cv } from "./data.js";
+import { cv as CV } from "./data.js";
 import { nbsp, makeLink, initTheme } from "./shared.js";
 
 // Renders cv.html from the `cv` object in data.js. The same DOM is printed to
 // assets/cv/*.pdf by tools/build-cv-pdf.mjs (print styles live in css/cv.css).
 
 const root = document.getElementById("cv");
+
+// Language: ?lang=en, else Russian. Each language has its own text and PDF.
+const lang = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "ru";
+const cv = CV[lang];
+const t = cv.ui;
+document.documentElement.lang = lang;
+document.title = `${cv.name} — CV`;
 
 function el(tag, className, text) {
   const n = document.createElement(tag);
@@ -24,11 +31,22 @@ function section(title, ...children) {
 
 /* toolbar (screen only): back to portfolio · download PDF · theme toggle */
 const bar = el("nav", "cv-bar");
-const back = makeLink({ label: "← Портфолио", href: "./" }, "action action--ghost");
+const back = makeLink({ label: t.back, href: "./" }, "action action--ghost");
 const right = el("div", "actions");
-const dl = makeLink({ label: "Скачать PDF", href: cv.pdf }, "action action--tg");
+const langs = el("div", "cv-lang");
+langs.setAttribute("aria-label", "Language");
+["ru", "en"].forEach((l) => {
+  const a = document.createElement("a");
+  a.href = l === "ru" ? "cv.html" : "cv.html?lang=en";
+  a.textContent = l.toUpperCase();
+  a.className = "cv-lang__opt";
+  a.lang = l;
+  if (l === lang) a.setAttribute("aria-current", "true");
+  langs.append(a);
+});
+const dl = makeLink({ label: t.download, href: cv.pdf }, "action action--tg");
 dl.setAttribute("download", cv.pdfName);
-right.append(dl);
+right.append(langs, dl);
 const toggle = document.getElementById("theme-toggle");
 if (toggle) right.append(toggle);
 bar.append(back, right);
@@ -91,13 +109,13 @@ cv.courses.forEach((c) => courses.append(el("li", null, c)));
 root.append(
   bar,
   head,
-  section("О себе", summary),
-  section("Опыт", ...jobs),
-  section("Артефакты", arts),
-  section("Навыки", skills),
-  section("Образование", edu),
-  section("Курсы", courses),
-  section("Языки", el("p", "cv-plain", cv.languages)),
+  section(t.about, summary),
+  section(t.experience, ...jobs),
+  section(t.artifacts, arts),
+  section(t.skills, skills),
+  section(t.education, edu),
+  section(t.courses, courses),
+  section(t.languages, el("p", "cv-plain", cv.languages)),
 );
 
 initTheme();
