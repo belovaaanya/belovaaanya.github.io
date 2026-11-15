@@ -31,7 +31,8 @@ There is no build, lint, or test step — it's static files served as-is.
 to touch to change content.** `main.js` renders everything from the `bio` object and `cases[]`
 array. Per case: `tags[]`, `title` (wrap the highlighted fragment in `**double asterisks**`),
 `accent` (color of that fragment, or `null`), `client` (italic line, or `null`), `img` (image
-box), and `summary[]` (array of paragraph strings shown beside the image — one `<p>` each). The
+box), `summary[]` (array of paragraph strings shown beside the image — one `<p>` each), and an
+optional `link: { label, href }` under the summary (full story: journal / Figma / Behance). The
 `bio` object has `credentials[]` (plain-text pills, e.g. "6 лет в UX") and `actions[]` (the
 contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `contactTitle`. The
 header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.

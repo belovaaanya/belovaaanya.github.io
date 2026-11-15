@@ -59,6 +59,8 @@ content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` rend
     `crop` = inner `[left%,top%,width%,height%]` or `null` for `object-fit:cover`). Rendered at
     design size and scaled to fit its column.
   - `summary` — array of paragraph strings shown beside the image (one `<p>` each)
+  - `link` — optional `{ label, href }` under the summary: where to read the full story
+    (journal, Figma, Behance); opens in a new tab. Add the label to `en` too.
 
 ### CV page
 

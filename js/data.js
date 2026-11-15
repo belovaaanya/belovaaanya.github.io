@@ -6,6 +6,8 @@
 //  client:      small italic line under the title (Rubik); null to omit.
 //  tags:        array of short labels; [] to omit the tag row.
 //  summary:     array of paragraph strings shown beside the image (one <p> each).
+//  link:        optional { label, href } under the summary — where to read the full story
+//               (journal, Figma, Behance); opens in a new tab. Omit when there is none.
 //
 //  bio.credentials:  plain-text pills (e.g. "6 лет в UX").
 //  bio.actions:      contact buttons { label, href, variant: "ghost" | "tg", inHeader? }.
@@ -49,6 +51,7 @@ export const cases = [
         { src: "assets/alfa/dashboard.webp", box: [38, 30, 894, 497], radius: 0, crop: null },
       ],
     },
+    link: { label: "Журнал проекта: от макета до продукта", href: "https://belovaaanya.github.io/voc-dashboard-releases/journal/" },
     summary: [
       "Спроектировала VoC-дашборд для продуктовых команд и C-level: обратная связь клиентов, продуктовые и UX-метрики в одном окне вместо 8+ разрозненных отчётов",
     ],
@@ -167,6 +170,7 @@ export const cases = [
 //  the matching key here too. Titles keep the **accent** markers.
 // ─────────────────────────────────────────────────────────────────────────
 export const en = {
+  "Журнал проекта: от макета до продукта": "Project journal: from mockup to product (in Russian)",
   "Анна Белова": "Anna Belova",
   "Продуктовый дизайнер": "Product Designer",
   "6 лет в UX": "6 years in UX",
@@ -319,7 +323,6 @@ const cvRu = {
   ],
   courses: [
     "UPROCK: Product Researcher & Designer",
-    "Bang Bang Education: UX Design, Behavioral UX Design, Figma",
     "Евгений Иванов (ex-Сбер): UI-дизайн мобильных интерфейсов",
     "Альфа-Банк: CJM, количественные методы, UX-редактура, Data Driven подход в управлении CX, генеративный ИИ и промптинг",
   ],
@@ -441,7 +444,6 @@ const cvEn = {
   ],
   courses: [
     "UPROCK: Product Researcher & Designer",
-    "Bang Bang Education: UX Design, Behavioral UX Design, Figma",
     "Evgeny Ivanov (ex-Sber): UI Design for Mobile Interfaces",
     "Alfa-Bank: Customer Journey Mapping, Quantitative Research Methods, UX Writing, Data-Driven CX Management, Generative AI & Prompt Engineering",
   ],

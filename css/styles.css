@@ -280,6 +280,14 @@ html.js .reveal {
 }
 .case__summary p { margin: 0; }
 .case__summary p + p { margin-top: 1em; }
+.case__link {
+  margin-top: 1em; align-self: flex-start; color: var(--fg);
+  text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px;
+  transition: text-decoration-color 0.25s;
+}
+.case__link::after { content: " ↗"; } /* opens in a new tab */
+.case__link:hover { text-decoration-color: currentColor; }
+.case__link:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
 
 /* ── footer (contact) ────────────────────────────────────────────────── */
 .footer { display: flex; flex-direction: column; align-items: center; gap: 24px; text-align: center; }

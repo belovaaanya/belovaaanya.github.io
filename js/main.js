@@ -1,5 +1,5 @@
 import { bio, cases, en as EN } from "./data.js";
-import { nbsp, buildActions, initTheme } from "./shared.js";
+import { nbsp, makeLink, buildActions, initTheme } from "./shared.js";
 
 document.documentElement.classList.add("js"); // enables reveal hiding only when JS runs
 // Always start at the top so blocks reveal in sequence (no mid-page restore
@@ -181,6 +181,8 @@ function renderCase(c) {
     p.textContent = nbsp(t);
     body.appendChild(p);
   });
+  // optional "read the full story" link (journal / Figma / Behance)
+  if (c.link) body.appendChild(makeLink(c.link, "case__link"));
   reveal(body, i++);
 
   row.append(media, body);
