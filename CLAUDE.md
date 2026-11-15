@@ -36,6 +36,12 @@ box), and `summary[]` (array of paragraph strings shown beside the image — one
 contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `contactTitle`. The
 header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.
 
+**CV page.** The «Смотреть CV» header button links to `cv.html`, rendered by `js/cv.js` from the
+`cv` object in `data.js` (styles in `css/cv.css`, incl. `@media print`). «Скачать PDF» downloads the
+**static** `assets/cv/anna-belova-cv.pdf` — whenever `cv` or the print styles change, regenerate it
+with `NODE_PATH=$(npm root -g) node tools/build-cv-pdf.mjs` (server on 5555 running) and commit
+the PDF in the same change, or the download goes stale.
+
 **Keep the docs in sync:** when you change the content model, fonts, theming, deploy, or file
 layout, update `README.md` (and this file) in the **same change** — don't let them go stale.
 
@@ -44,7 +50,8 @@ layout, update `README.md` (and this file) in the **same change** — don't let 
 **Data-driven render.** `js/main.js` builds the whole DOM from `js/data.js` at load: `renderBio`,
 `renderCase`, and `renderFooter` create `<section/footer class="block …">` nodes and append them
 to `#app`. `bio.actions` are the CV / email / TG contact buttons (`buildActions()` → `.action`,
-built with the shared `makeLink()` helper): the top-right header row shows only the ones flagged
+built with the shared `makeLink()` helper; `nbsp`, `makeLink`, `buildActions` and `initTheme` live in
+`js/shared.js`, used by both `main.js` and `cv.js`): the top-right header row shows only the ones flagged
 `inHeader`, and `renderFooter` shows all of them as a button row under the `bio.contactTitle`
 heading. There is no templating engine and no HTML for content in `index.html` (just `#app` + the
 theme toggle).

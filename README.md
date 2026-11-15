@@ -35,7 +35,7 @@ You can also re-run it manually from the **Actions** tab (`workflow_dispatch`).
 ## Edit the content
 
 All copy, tags, links and images live in **`js/data.js`** — the only file to touch to change
-content. `js/main.js` renders the bio, cases and footer from it.
+content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` renders the CV page.
 
 - `bio`:
   - `name`, `role`, `photo`
@@ -54,6 +54,20 @@ content. `js/main.js` renders the bio, cases and footer from it.
     `crop` = inner `[left%,top%,width%,height%]` or `null` for `object-fit:cover`). Rendered at
     design size and scaled to fit its column.
   - `summary` — array of paragraph strings shown beside the image (one `<p>` each)
+
+### CV page
+
+The header **«Смотреть CV»** button opens **`cv.html`** — a web version of the CV rendered by
+`js/cv.js` from the **`cv`** object in `js/data.js` (contacts, summary, `experience[]` with
+`{ title, text }` points, `artifacts`, `skills`, `education`, `courses`, `languages`). Its
+**«Скачать PDF»** button downloads the static file `assets/cv/anna-belova-cv.pdf`, which is the same
+page printed with the `@media print` styles in `css/cv.css` (light, A4). **After editing `cv`,
+regenerate the PDF:**
+
+```bash
+python3 serve.py 5555 &
+NODE_PATH=$(npm root -g) node tools/build-cv-pdf.mjs   # needs Playwright + Chromium
+```
 
 Images are stored as **WebP** in `assets/<case-id>/` (converted from Figma PNG exports for fast
 loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected).
@@ -79,10 +93,15 @@ loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected
 
 ```
 index.html          theme toggle + #app + inline pre-paint theme script; no content markup
+cv.html             CV page shell (#cv); content from data.js `cv`
 css/styles.css      all styles: fonts, pills/buttons, showcase, reveal, theming, responsive
-js/data.js          ALL content — edit here (bio + cases[])
+css/cv.css          CV page layout + print/PDF styles
+js/data.js          ALL content — edit here (bio + cases[] + cv)
 js/main.js          renders bio/cases/footer from data.js, scales showcase images,
-                    reveal-on-scroll (IntersectionObserver), theme toggle
+                    reveal-on-scroll (IntersectionObserver)
+js/cv.js            renders the CV page
+js/shared.js        helpers used by both pages: nbsp(), makeLink(), buildActions(), theme toggle
+tools/build-cv-pdf.mjs  regenerates assets/cv/anna-belova-cv.pdf from cv.html (Playwright)
 fonts/              Rubik (400 / 500 / 500-italic) — self-hosted (latin + cyrillic)
 assets/<case-id>/   case images (WebP)
 serve.py            no-cache static dev server
