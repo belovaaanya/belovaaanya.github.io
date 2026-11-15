@@ -59,11 +59,29 @@ export function initTheme() {
     btn.setAttribute("aria-label", t === "dark" ? "Включить светлую тему" : "Включить тёмную тему");
   };
   render();
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
   btn.addEventListener("click", () => {
     const next = effective() === "dark" ? "light" : "dark";
-    root.dataset.theme = next;
-    try { localStorage.setItem("theme", next); } catch (e) {}
-    render();
+    const apply = () => {
+      root.dataset.theme = next;
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      render();
+      // the new icon spins in
+      if (!calm.matches && btn.firstElementChild?.animate) btn.firstElementChild.animate(
+        [{ transform: "rotate(-90deg) scale(0.6)", opacity: 0 }, { transform: "none", opacity: 1 }],
+        { duration: 450, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)" });
+    };
+    // Soft circular reveal from the button; instant when motion is reduced or unsupported.
+    if (calm.matches || !document.startViewTransition) return apply();
+    const r = btn.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    const end = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    document.startViewTransition(apply).ready.then(() => {
+      document.documentElement.animate(
+        { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${end}px at ${x}px ${y}px)`] },
+        { duration: 550, easing: "cubic-bezier(0.22, 0.61, 0.36, 1)", pseudoElement: "::view-transition-new(root)" }
+      );
+    });
   });
   // follow the system while the user hasn't made an explicit choice
   systemDark.addEventListener("change", () => { if (!root.dataset.theme) render(); });

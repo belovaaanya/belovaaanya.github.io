@@ -278,6 +278,39 @@ html.js .reveal {
   .bio__meta { margin-left: 0; width: 100%; }
 }
 
+/* ── micro-interactions (only when motion is OK) ─────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  /* press feedback on every button */
+  .action:active { transform: translateY(0) scale(0.97); transition-duration: 0.08s; }
+  #theme-toggle:active, #lang-toggle:active { transform: scale(0.92); }
+
+  /* case images: gentle lift on hover (on the wrap, not .case__media, which owns the reveal transition) */
+  .showcase-wrap { transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1), filter 0.5s; }
+  /* bio photo: small playful tilt */
+  .bio__photo { transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  /* pills + CV links */
+  .pill { transition: color 0.2s, background 0.2s; }
+  .cv-link { transition: text-decoration-color 0.25s; }
+  .cv-lang__opt:active { transform: scale(0.94); }
+
+  @media (hover: hover) {
+    .showcase-wrap:hover { transform: translateY(-4px) scale(1.006); filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.18)); }
+    .bio__photo:hover { transform: rotate(-4deg) scale(1.04); }
+    .pill:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 8%, transparent); }
+  }
+
+  /* CV page: sections fade up one after another on load */
+  .cv-bar, .cv-head, .cv-section { animation: cv-in 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+  .cv-head { animation-delay: 0.06s; }
+  .cv-section:nth-of-type(1) { animation-delay: 0.12s; }
+  .cv-section:nth-of-type(2) { animation-delay: 0.18s; }
+  .cv-section:nth-of-type(n+3) { animation-delay: 0.24s; }
+}
+@keyframes cv-in { from { opacity: 0; transform: translateY(14px); } }
+
+/* theme switch: a soft circular reveal from the toggle (View Transitions API, see initTheme) */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
 /* ── reduced motion ──────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html.js .reveal { opacity: 1 !important; transform: none !important; transition: none; }

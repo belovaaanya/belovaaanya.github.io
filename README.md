@@ -89,7 +89,11 @@ loading; conversion preserves pixel dimensions, so `crop` geometry is unaffected
   `:root[data-theme="light"]` and the light media query. Per-case title accents are darkened on
   light backgrounds so light hues stay readable.
 - `<meta name="darkreader-lock">` tells the Dark Reader extension to leave the site's colors alone.
-- Respects `prefers-reduced-motion` — the reveal animation is disabled and everything shows.
+- **Micro-interactions** (block at the end of `css/styles.css`): press feedback on buttons, a gentle
+  lift on case images and a tilt on the bio photo on hover, CV sections fading up on load, and a
+  circular reveal from the toggle when switching theme (View Transitions API, in `initTheme`).
+- Respects `prefers-reduced-motion` — the reveal animation, micro-interactions and theme reveal are
+  disabled and everything shows.
 
 ## Layout
 

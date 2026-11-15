@@ -77,7 +77,9 @@ don't set that transform elsewhere. Spans `data.js` (model) → `main.js` (build
 scroll; every block stays visible. Animatable elements get `class="reveal"` + `style="--i:<n>"`
 (stagger index). `html.js .reveal` hides them (opacity 0 + translateY); an `IntersectionObserver`
 in `main.js` adds `.is-in` to each `.block` once as it enters the viewport, and CSS transitions
-them in with a per-element delay from `--i`. `document.documentElement.classList.add("js")` gates
+them in with a per-element delay from `--i`. Hover micro-interactions live in a
+`prefers-reduced-motion: no-preference` block in `styles.css`; the case-image lift is on `.showcase-wrap`
+(not `.case__media`, whose transition belongs to the reveal). `document.documentElement.classList.add("js")` gates
 the hiding so content is visible if JS fails. On load the page force-scrolls to top so blocks
 reveal in sequence. Respects `prefers-reduced-motion` (reveal disabled).
 
