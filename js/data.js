@@ -161,6 +161,41 @@ export const cases = [
 ];
 
 // ─────────────────────────────────────────────────────────────────────────
+//  English version of the portfolio page (RU/EN toggle in the header).
+//  Keys are the exact Russian strings from bio / cases above, values are their
+//  English versions (written natively, not translated word-for-word). Any string
+//  without an entry stays Russian — so after editing Russian copy above, update
+//  the matching key here too. Titles keep the **accent** markers.
+// ─────────────────────────────────────────────────────────────────────────
+export const en = {
+  "Анна Белова": "Anna Belova",
+  "Продуктовый дизайнер": "Product Designer",
+  "6 лет в UX": "6 years in UX",
+  "4 года в Enterprise Fintech": "4 years in Enterprise Fintech",
+  "Связаться со мной": "Get in touch",
+  "Смотреть CV": "View CV",
+  "Написать по почте": "Email me",
+  "Написать в tg": "Message on tg",
+  [bio.text]: "Product designer with 6 years of experience in UX. I design complex B2B products at the intersection of design, research and data analytics. I help turn user insights into product decisions",
+  "Сократила путь от клиентской обратной связи до **продуктового решения**": "Shortened the path from customer feedback to **product decisions**",
+  "Альфа-Банк": "Alfa-Bank",
+  "Спроектировала VoC Dashboard для продуктовых команд и C-level, объединив клиентскую обратную связь, продуктовые и UX-метрики в единый инструмент для принятия решений": "Designed a VoC Dashboard for product teams and C-level executives, bringing customer feedback, product and UX metrics together in a single decision-making tool",
+  "Превратила **медицинскую технологию** в цифровой продукт": "Turned **medical technology** into a digital product",
+  "Спроектировала мобильное приложение, дизайн-систему и пользовательский опыт, помогая подготовить продукт к привлечению инвестиций и выходу на рынок": "Designed the mobile app, design system and user experience, helping prepare the product for fundraising and market launch",
+  "Разделила сложные страховые процессы **по ролям**": "Split complex insurance workflows **by role**",
+  "Перестроила информационную архитектуру платформы для брокеров и андеррайтеров, сделав сложные страховые сценарии понятнее для новых пользователей и быстрее для опытных специалистов": "Rebuilt the platform's information architecture for brokers and underwriters, making complex insurance scenarios clearer for new users and faster for experienced professionals",
+  "**Снизила барьер входа** без потери данных для персонализации": "**Lowered the entry barrier** without losing personalization data",
+  "Исследовала пользовательские сценарии и спроектировала онбординг, который помогает быстрее выбрать первый напиток и одновременно собирает данные для персональных рекомендаций": "Researched user scenarios and designed an onboarding flow that helps people choose their first drink faster while collecting data for personalized recommendations",
+  "Сократила путь до просмотра": "Shortened the path to watching",
+  "Исследовала лучшие практики стриминговых сервисов и спроектировала интерфейс, который помогает быстрее принять решение и начать просмотр": "Studied best practices of streaming services and designed an interface that helps viewers decide faster and start watching",
+  "Сократила путь от поиска до покупки": "Shortened the path from search to purchase",
+  "Исследовала сценарии визуального поиска и поиска по штрихкоду, спроектировав интерфейс, который ускоряет выбор товара и оформление заказа": "Researched visual and barcode search scenarios and designed an interface that speeds up product selection and checkout",
+  "Некоммерческие иллюстрации": "Non-commercial illustrations",
+  "Помимо продуктового дизайна создаю иллюстрации и стикерпаки, в которых исследую атмосферу, композицию и визуальное повествование": "Alongside product design, I create illustrations and sticker packs that explore atmosphere, composition and visual storytelling",
+  "Мои работы выпускались совместно с No Kids Stickers (NKS) — брендом с аудиторией более 400 000 подписчиков": "My work has been released in collaboration with No Kids Stickers (NKS), a brand with an audience of over 400,000 followers",
+};
+
+// ─────────────────────────────────────────────────────────────────────────
 //  CV page (cv.html, rendered by js/cv.js). Merged from the RU + EN PDF CVs.
 //  pdf:          the downloadable file behind «Скачать PDF». It is a static file
 //                generated from this page — rebuild both after editing:

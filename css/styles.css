@@ -117,6 +117,29 @@ a { color: inherit; }
 #theme-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
 #theme-toggle svg { width: 18px; height: 18px; display: block; }
 
+/* language toggle (RU / EN) — same look as the theme toggle */
+#lang-toggle {
+  width: 40px; height: 40px; padding: 0; flex: none;
+  display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: var(--tag-bg); color: var(--fg);
+  font: 500 13px/1 var(--font-rubik); letter-spacing: 0.02em;
+  cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none;
+}
+@media (hover: hover) {
+  #lang-toggle:hover { transform: scale(1.06); border-color: color-mix(in srgb, var(--fg) 30%, transparent); }
+}
+#lang-toggle:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+#lang-toggle:focus:not(:focus-visible) { outline: none; }
+/* the extra toggle needs a little room on phones: tighten the header row */
+@media (max-width: 480px) {
+  .bio__actions { gap: 4px; }
+  .bio__actions .action { flex: none; padding: 4px 12px; letter-spacing: 0.02em; }
+  .bio__actions #lang-toggle, .bio__actions #theme-toggle { width: 36px; height: 36px; align-self: center; }
+}
+
 /* ── page container ──────────────────────────────────────────────────── */
 #app {
   max-width: 1350px;

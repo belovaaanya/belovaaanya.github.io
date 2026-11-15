@@ -45,6 +45,11 @@ content. `js/main.js` renders the bio, cases and footer from it; `js/cv.js` rend
     **top-right header buttons**. `ghost` = translucent, `tg` = solid orange.
   - `contactTitle` — heading above the footer buttons (e.g. `"Связаться со мной"`)
   - `text` — the bio paragraph
+- `en` — the **English version of the portfolio page** (the round **EN / RU** button next to the
+  theme toggle). Keys are the exact Russian strings from `bio` / `cases`, values their English
+  versions, written natively. A string with no entry stays Russian, so **when you edit Russian copy,
+  update its key in `en` too**. The choice is saved in `localStorage` (`lang`); in English the
+  «View CV» button opens `cv.html?lang=en`, and opening the CV in a language switches the page to it.
 - `cases[]` — per case:
   - `tags` — array of short labels (`[]` to omit the row)
   - `title` — wrap the highlighted fragment in `**double asterisks**`
@@ -102,7 +107,7 @@ index.html          theme toggle + #app + inline pre-paint theme script; no cont
 cv.html             CV page shell (#cv); content from data.js `cv` (?lang=en for English)
 css/styles.css      all styles: fonts, pills/buttons, showcase, reveal, theming, responsive
 css/cv.css          CV page layout + print/PDF styles
-js/data.js          ALL content — edit here (bio + cases[] + cv)
+js/data.js          ALL content — edit here (bio + cases[] + en + cv)
 js/main.js          renders bio/cases/footer from data.js, scales showcase images,
                     reveal-on-scroll (IntersectionObserver)
 js/cv.js            renders the CV page

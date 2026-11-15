@@ -36,6 +36,13 @@ box), and `summary[]` (array of paragraph strings shown beside the image — one
 contact buttons: `{ label, href, variant: "ghost" | "tg", inHeader? }`) plus `contactTitle`. The
 header shows the buttons flagged `inHeader`; the footer shows all of them under `contactTitle`.
 
+**RU / EN on the portfolio page.** `en` in `data.js` maps each Russian string of `bio` / `cases` to
+its English version (keys must match the Russian text exactly — edit both together; a missing key
+silently stays Russian). `main.js` deep-copies the content through `tr()` and re-renders `#app` when
+the `#lang-toggle` button (built in `main.js`, placed before `#theme-toggle`) is clicked; the choice
+is stored in `localStorage.lang`, shared with `cv.html` (`cv.js` writes it, so the page follows the
+CV's language), and in English the CV button points to `cv.html?lang=en`.
+
 **CV page.** The «Смотреть CV» header button links to `cv.html`, rendered by `js/cv.js` from the
 `cv` object in `data.js` — `cv.ru` and `cv.en`, switched by `?lang=en` (styles in `css/cv.css`, incl.
 `@media print`). Write each language natively (RU: perfective feminine verb of the result, metric at

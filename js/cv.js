@@ -8,6 +8,7 @@ const root = document.getElementById("cv");
 
 // Language: ?lang=en, else Russian. Each language has its own text and PDF.
 const lang = new URLSearchParams(location.search).get("lang") === "en" ? "en" : "ru";
+try { localStorage.setItem("lang", lang); } catch (e) {} // portfolio page follows the CV's language
 const cv = CV[lang];
 const t = cv.ui;
 document.documentElement.lang = lang;

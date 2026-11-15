@@ -1,4 +1,4 @@
-import { bio, cases } from "./data.js";
+import { bio, cases, en as EN } from "./data.js";
 import { nbsp, buildActions, initTheme } from "./shared.js";
 
 document.documentElement.classList.add("js"); // enables reveal hiding only when JS runs
@@ -7,6 +7,31 @@ document.documentElement.classList.add("js"); // enables reveal hiding only when
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 window.scrollTo(0, 0);
 const app = document.getElementById("app");
+
+/* ── language (RU / EN) ──────────────────────────────────────────────── */
+// The page is written in Russian; `en` in data.js maps each Russian string to its
+// English version. The choice is saved in localStorage ("lang") and shared with cv.html.
+const TITLES = { ru: "Анна Белова — Продуктовый дизайнер", en: "Anna Belova — Product Designer" };
+let LANG = "ru";
+try { if (localStorage.getItem("lang") === "en") LANG = "en"; } catch (e) {}
+
+// Deep-copy content, swapping every Russian string that has an English version.
+function tr(v) {
+  if (typeof v === "string") return LANG === "en" && EN[v] ? EN[v] : v;
+  if (Array.isArray(v)) return v.map(tr);
+  if (v && typeof v === "object") { const o = {}; for (const k in v) o[k] = tr(v[k]); return o; }
+  return v;
+}
+
+const langBtn = document.createElement("button");
+langBtn.id = "lang-toggle";
+langBtn.type = "button";
+function renderLangBtn() {
+  langBtn.textContent = LANG === "ru" ? "EN" : "RU"; // label = language you switch to
+  langBtn.setAttribute("aria-label", LANG === "ru" ? "Switch to English" : "Переключить на русский");
+  document.documentElement.lang = LANG;
+  document.title = TITLES[LANG];
+}
 
 /* ── helpers ─────────────────────────────────────────────────────────── */
 
@@ -74,6 +99,7 @@ function renderBio(b) {
   // top-right action bar: header buttons (CV / TG) + the theme toggle to their right
   const actions = buildActions(b.actions.filter((a) => a.inHeader), "bio__actions");
   const toggle = document.getElementById("theme-toggle");
+  actions.appendChild(langBtn);
   if (toggle) actions.appendChild(toggle);
 
   const headline = document.createElement("div");
@@ -173,9 +199,16 @@ function sizeShowcases() {
 
 /* ── boot ────────────────────────────────────────────────────────────── */
 
-app.appendChild(renderBio(bio));
-cases.forEach((c) => app.appendChild(renderCase(c)));
-app.appendChild(renderFooter(bio));
+function renderAll() {
+  const b = tr(bio), cs = tr(cases);
+  // the CV opens in the same language as the page
+  if (LANG === "en") b.actions.forEach((a) => { if (a.href === "cv.html") a.href = "cv.html?lang=en"; });
+  app.appendChild(renderBio(b));
+  cs.forEach((c) => app.appendChild(renderCase(c)));
+  app.appendChild(renderFooter(b));
+}
+renderLangBtn();
+renderAll();
 
 sizeShowcases();
 window.addEventListener("resize", sizeShowcases);
@@ -200,5 +233,19 @@ if (reduce) {
 }
 
 initTheme();
+
+langBtn.addEventListener("click", () => {
+  LANG = LANG === "ru" ? "en" : "ru";
+  try { localStorage.setItem("lang", LANG); } catch (e) {}
+  const theme = document.getElementById("theme-toggle");
+  document.body.insertBefore(theme, app); // rescue the toggles before clearing #app
+  app.innerHTML = "";
+  renderLangBtn();
+  renderAll();
+  document.querySelectorAll(".block").forEach((b) => b.classList.add("is-in")); // no re-reveal on switch
+  sizeShowcases();
+  theme.dispatchEvent(new Event("langchange")); // theme toggle re-labels itself
+  langBtn.focus();
+});
 
 console.log("[portfolio] rendered", cases.length, "cases (vertical scroll)");

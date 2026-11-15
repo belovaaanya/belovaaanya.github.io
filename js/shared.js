@@ -56,7 +56,10 @@ export function initTheme() {
   const render = () => {
     const t = effective();
     btn.innerHTML = t === "dark" ? SUN : MOON; // icon = theme you switch to
-    btn.setAttribute("aria-label", t === "dark" ? "Включить светлую тему" : "Включить тёмную тему");
+    const en = root.lang === "en";
+    btn.setAttribute("aria-label", t === "dark"
+      ? (en ? "Switch to light theme" : "Включить светлую тему")
+      : (en ? "Switch to dark theme" : "Включить тёмную тему"));
   };
   render();
   const calm = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -83,6 +86,7 @@ export function initTheme() {
       );
     });
   });
+  btn.addEventListener("langchange", render); // main.js fires it after RU/EN switch
   // follow the system while the user hasn't made an explicit choice
   systemDark.addEventListener("change", () => { if (!root.dataset.theme) render(); });
 }
